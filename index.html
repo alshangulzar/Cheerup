@@ -1,0 +1,1860 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ece4f9">
+<title>маленькое растение для длинного дня</title>
+<meta name="description" content="маленькая открытка для длинного дня: растение, автомат, лего, письма и книжечка купонов.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="маленькое растение для длинного дня">
+<meta property="og:description" content="полей растение, крутани автомат, собери день из кубиков, открой письмо.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23ece4f9'/><path d='M14 26h36l-5 26a4 4 0 0 1-4 3H23a4 4 0 0 1-4-3z' fill='%23c9b6e8' stroke='%235b4a78' stroke-width='3'/><rect x='11' y='17' width='42' height='11' rx='5.5' fill='%23bda8e4' stroke='%235b4a78' stroke-width='3'/><circle cx='26' cy='39' r='2.6' fill='%235b4a78'/><circle cx='38' cy='39' r='2.6' fill='%235b4a78'/><path d='M29 44q3 3 6 0' stroke='%235b4a78' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Neucha&family=Quicksand:wght@500;600;700&family=Comfortaa:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ece4f9;
+  --bg-soft:#f6f1ff;
+  --card:#f7f3ff;
+  --ink:#4a3f63;
+  --ink-soft:#7a6c99;
+  --pot:#c9b6e8;
+  --pot-dark:#b49fdd;
+  --pot-rim:#bda8e4;
+  --soil:#6e5244;
+  --leaf:#8fc98a;
+  --leaf-dark:#6fb173;
+  --stem:#7cbd82;
+  --flower:#f6a8c8;
+  --flower-dark:#ee8fb6;
+  --yellow:#f9d05c;
+  --water:#9ad4ef;
+  --cream:#fbe0c0;
+  --white:#fffdf9;
+  --hand:'Patrick Hand','Neucha',ui-rounded,cursive;
+  --ui:'Quicksand','Comfortaa','Nunito',system-ui,sans-serif;
+  --line:3;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  min-height:100svh;
+  font-family:var(--ui);
+  color:var(--ink);
+  background:
+    radial-gradient(120% 80% at 50% 0%, #f7f1ff 0%, rgba(247,241,255,0) 60%),
+    radial-gradient(90% 60% at 90% 100%, #f3e6fb 0%, rgba(243,230,251,0) 70%),
+    var(--bg);
+  display:flex;
+  justify-content:center;
+  padding:26px 16px calc(48px + env(safe-area-inset-bottom));
+  -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+.app{width:100%;max-width:430px}
+
+/* ---------- шапка ---------- */
+.intro{text-align:center;margin:0 0 18px}
+.hi{
+  font-family:var(--hand);
+  font-size:20px;
+  color:var(--ink-soft);
+  margin:0 0 5px;
+  letter-spacing:.3px;
+}
+.dedic{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-family:var(--hand);
+  font-size:clamp(17px,4.6vw,19px);
+  line-height:1.3;
+  color:var(--ink);
+  margin:0;
+}
+.dedic-star{width:15px;height:15px;flex:0 0 auto;display:block}
+h1{
+  font-family:var(--hand);
+  font-weight:400;
+  font-size:clamp(26px,7.4vw,32px);
+  line-height:1.2;
+  margin:0 0 10px;
+  color:var(--ink);
+  text-align:center;
+}
+
+/* ---------- переключатель частей ---------- */
+.tabs{
+  display:flex;
+  justify-content:space-between;
+  gap:2px;
+  margin:0 0 20px;
+  padding:5px;
+  background:linear-gradient(180deg,#e7dbf9 0%,#ddcff5 100%);
+  border:3px solid var(--ink);
+  border-radius:999px;
+  box-shadow:0 4px 0 rgba(74,63,99,.13), inset 0 2px 5px rgba(91,74,120,.13);
+  overflow-x:auto;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto;
+  font-family:var(--ui);
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:0;
+  color:var(--ink);
+  background:transparent;
+  border:0;
+  border-radius:999px;
+  padding:10px 6px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background .18s ease, transform .12s ease;
+}
+.tab:hover{background:rgba(255,255,255,.45)}
+.tab[aria-selected="true"]:hover{background:linear-gradient(180deg,#fffdf9 0%,#fff1f7 100%)}
+.tab[aria-selected="true"]{
+  background:linear-gradient(180deg,#fffdf9 0%,#fff1f7 100%);
+  box-shadow:inset 0 0 0 2px var(--ink), 0 2px 0 rgba(74,63,99,.16);
+}
+.tab:active{transform:scale(.96)}
+.tab .dot{
+  display:inline-block;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--flower);
+  box-shadow:0 0 0 1.5px rgba(91,74,120,.55);
+  margin-left:4px;
+  vertical-align:middle;
+  opacity:0;
+  transition:opacity .3s ease;
+}
+.tab.fresh .dot{opacity:1}
+
+.panel[hidden]{display:none}
+.panel.in{animation:panelIn .45s ease-out both}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- лего ---------- */
+.lego-card{padding:18px 18px 20px;background:linear-gradient(180deg,#fbf8ff 0%,#f2ecfd 100%)}
+.build-box{display:block;width:100%;max-width:250px;margin:0 auto 4px;height:auto}
+.brick-in{animation:brickDrop .5s cubic-bezier(.34,1.5,.6,1) both;transform-box:fill-box;transform-origin:center bottom}
+@keyframes brickDrop{
+  0%{transform:translateY(-46px) scaleY(1.1);opacity:0}
+  40%{opacity:1}
+  70%{transform:translateY(0) scaleY(.88) scaleX(1.06)}
+  100%{transform:translateY(0) scale(1)}
+}
+.steps{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.step{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  text-align:left;
+  font-family:var(--ui);
+  font-weight:600;
+  font-size:15px;
+  line-height:1.3;
+  color:var(--ink);
+  background:var(--white);
+  border:3px solid var(--ink);
+  border-radius:14px;
+  padding:11px 13px 11px 11px;
+  cursor:pointer;
+  box-shadow:0 4px 0 rgba(74,63,99,.14);
+  transition:transform .12s ease, box-shadow .12s ease, background .2s ease;
+}
+.step:active{transform:translateY(4px);box-shadow:0 0 0 rgba(74,63,99,.14)}
+.step .knobs{
+  flex:0 0 auto;
+  width:34px;height:24px;
+  display:block;
+}
+.step .pic{
+  flex:0 0 auto;
+  width:38px;height:38px;
+  display:block;
+  margin:-4px 0;
+}
+.step .txt{flex:1 1 auto}
+.step[aria-pressed="true"]{background:#eee6fb}
+.step[aria-pressed="true"] .bk{fill:#f6a8c8}
+.step[aria-pressed="true"] .txt{text-decoration:line-through;opacity:.55}
+.lego-done{
+  margin:16px 2px 0;
+  font-family:var(--hand);
+  font-size:clamp(19px,5.2vw,22px);
+  line-height:1.35;
+  text-align:center;
+  color:var(--ink);
+}
+.lego-done[hidden]{display:none}
+.lego-done.in{animation:giftIn .6s cubic-bezier(.34,1.56,.64,1)}
+.lego-hint{
+  font-family:var(--ui);
+  font-weight:600;
+  font-size:13px;
+  text-align:center;
+  color:var(--ink-soft);
+  margin:12px 0 0;
+}
+
+/* ---------- письма ---------- */
+.letters-card{padding:18px 18px 20px;background:linear-gradient(180deg,#fbf8ff 0%,#f2ecfd 100%)}
+.env-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.env{
+  background:none;border:0;padding:0;margin:0;
+  cursor:pointer;display:block;line-height:0;
+  border-radius:14px;
+  transition:transform .14s ease;
+}
+.env svg{width:100%;height:auto;display:block}
+.env:active{transform:scale(.95)}
+.env .flap-open,.env .card-in{opacity:0}
+.env[aria-pressed="true"] .flap-shut{opacity:0}
+.env[aria-pressed="true"] .flap-open,.env[aria-pressed="true"] .card-in{opacity:1}
+.env[aria-pressed="true"] .seal{opacity:0}
+.env.just .card-in{animation:cardOut .5s cubic-bezier(.34,1.5,.6,1) both}
+@keyframes cardOut{
+  0%{opacity:0;transform:translateY(22px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+.env.just .flap-open{animation:flapUp .4s ease-out both;transform-box:view-box;transform-origin:50px 34px}
+@keyframes flapUp{
+  0%{transform:scaleY(-1) rotate(0);opacity:.2}
+  100%{transform:none;opacity:1}
+}
+.card-in,.flap-open,.flap-shut,.seal{transition:opacity .25s ease}
+
+.note{
+  position:relative;
+  margin-top:22px;
+  background:#fffdf6;
+  border:3px solid var(--ink);
+  border-radius:14px;
+  padding:28px 20px 24px;
+  box-shadow:0 6px 0 rgba(74,63,99,.12), 0 14px 26px rgba(110,86,168,.13);
+  transform:rotate(-.8deg);
+}
+.note[hidden]{display:none}
+.note.in{animation:noteIn .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes noteIn{
+  0%{opacity:0;transform:rotate(-4deg) scale(.66) translateY(-12px)}
+  58%{opacity:1;transform:rotate(.8deg) scale(1.05)}
+  100%{transform:rotate(-.8deg) scale(1)}
+}
+.note-text{
+  font-family:var(--hand);
+  font-size:clamp(20px,5.6vw,24px);
+  line-height:1.5;
+  margin:0;
+  text-align:center;
+  color:var(--ink);
+}
+.note-mark{
+  display:block;
+  width:26px;height:26px;
+  margin:14px auto 0;
+  opacity:.9;
+}
+.tape{
+  position:absolute;top:-12px;
+  width:54px;height:21px;
+  background:rgba(249,208,92,.55);
+  border:2px solid rgba(91,74,120,.3);
+  border-radius:3px;
+}
+.tape-l{left:16px;transform:rotate(-7deg)}
+.tape-r{right:16px;transform:rotate(6deg)}
+.letters-count{
+  display:block;
+  text-align:center;
+  font-family:var(--ui);
+  font-weight:600;
+  font-size:13px;
+  color:var(--ink-soft);
+  margin:14px 0 0;
+}
+
+/* ---------- всплывающая открытка ---------- */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(64,52,96,.46);
+  animation:dimIn .26s ease-out both;
+}
+.modal[hidden]{display:none}
+@keyframes dimIn{from{opacity:0}to{opacity:1}}
+
+.gift{
+  width:100%;
+  max-width:340px;
+  max-height:100%;
+  overflow-y:auto;
+  background:var(--white);
+  border:3px solid var(--ink);
+  border-radius:28px;
+  padding:22px 20px 18px;
+  text-align:center;
+  box-shadow:0 8px 0 rgba(74,63,99,.2), 0 26px 46px rgba(58,42,98,.32);
+  animation:giftIn .62s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes giftIn{
+  0%{opacity:0;transform:scale(.58) rotate(-6deg)}
+  55%{opacity:1;transform:scale(1.05) rotate(1.6deg)}
+  78%{transform:scale(.985) rotate(-.6deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+.gift.swap{animation:giftSwap .5s cubic-bezier(.34,1.5,.6,1) both}
+@keyframes giftSwap{
+  0%{opacity:.25;transform:scale(.9) rotate(-2.5deg)}
+  60%{opacity:1;transform:scale(1.03) rotate(.8deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+.gift-cap{
+  font-family:var(--ui);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0 0 12px;
+}
+.gift-art{
+  width:min(46vw,158px);
+  aspect-ratio:1/1;
+  margin:0 auto;
+  border-radius:50%;
+  border:3px solid var(--ink);
+  background:radial-gradient(circle at 50% 36%,#fdf9ff 0%,#eae0fa 100%);
+  display:grid;place-items:center;
+  box-shadow:inset 0 -7px 0 rgba(110,86,168,.09);
+}
+.gift-art svg{width:78%;height:78%;display:block}
+.gift-text{
+  font-family:var(--hand);
+  font-size:clamp(19px,5.3vw,23px);
+  line-height:1.35;
+  margin:16px 2px 0;
+  color:var(--ink);
+}
+.gift-actions{display:flex;gap:10px;margin-top:18px}
+.gift-btn{
+  flex:1 1 0;
+  font-family:var(--ui);
+  font-weight:700;
+  font-size:15px;
+  color:var(--ink);
+  border:3px solid var(--ink);
+  border-radius:999px;
+  padding:12px 6px;
+  cursor:pointer;
+  box-shadow:0 4px 0 var(--ink);
+  transition:transform .1s ease, box-shadow .1s ease;
+  white-space:nowrap;
+}
+.gift-btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--ink)}
+.gift-more{background:#ffe3ef}
+.gift-close{background:#e9dcff}
+
+/* ---------- купоны ---------- */
+.cp-card{padding:18px 18px 20px;background:#f3ecfd}
+.cp-list{display:flex;flex-direction:column;gap:16px}
+
+.coupon{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:stretch;
+  gap:0;
+  text-align:left;
+  background:#fffdf6;
+  border:3px solid var(--ink);
+  border-radius:14px;
+  padding:0;
+  cursor:pointer;
+  box-shadow:0 5px 0 rgba(74,63,99,.14);
+  transition:transform .12s ease, box-shadow .12s ease, filter .35s ease;
+}
+.coupon:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(74,63,99,.14)}
+.coupon::before,.coupon::after{
+  content:"";
+  position:absolute;
+  left:74px;
+  width:15px;height:15px;
+  margin-left:-7.5px;
+  border-radius:50%;
+  background:#f3ecfd;
+  z-index:2;
+}
+.coupon::before{top:-7.5px}
+.coupon::after{bottom:-7.5px}
+.cp-perf{
+  position:absolute;
+  left:74px;top:12px;bottom:12px;
+  border-left:3px dashed rgba(91,74,120,.4);
+  z-index:1;
+}
+
+.cp-stub{
+  flex:0 0 74px;
+  display:grid;place-items:center;
+  padding:12px 8px;
+  background:#f5eeff;
+  border-radius:11px 0 0 11px;
+  transition:transform .4s cubic-bezier(.34,1.4,.64,1);
+}
+.cp-stub svg{width:42px;height:42px;display:block}
+.cp-body{
+  flex:1 1 auto;
+  padding:13px 14px 13px 13px;
+  display:flex;flex-direction:column;gap:4px;
+  transition:transform .4s cubic-bezier(.34,1.4,.64,1);
+}
+.cp-title{
+  font-family:var(--hand);
+  font-size:clamp(18px,4.9vw,21px);
+  line-height:1.2;
+  color:var(--ink);
+}
+.cp-note{
+  font-family:var(--ui);
+  font-weight:600;
+  font-size:12.5px;
+  line-height:1.35;
+  color:var(--ink-soft);
+}
+.cp-stamp{
+  position:absolute;
+  right:6px;top:50%;
+  margin-top:-17px;
+  width:58px;
+  box-sizing:border-box;
+  padding:5px 4px;
+  border:2.5px double #d4628b;
+  border-radius:7px;
+  color:#d4628b;
+  font-family:var(--ui);
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:.8px;
+  line-height:1.25;
+  text-transform:uppercase;
+  text-align:center;
+  opacity:0;
+  transform:rotate(-11deg) scale(.5);
+  pointer-events:none;
+  z-index:3;
+}
+.coupon[aria-pressed="true"]{filter:saturate(.82) brightness(1.01)}
+.coupon[aria-pressed="true"] .cp-stub{transform:translateX(-4px) rotate(-2deg)}
+.coupon[aria-pressed="true"] .cp-body{transform:translateX(3px) rotate(.7deg);padding-right:70px}
+.coupon[aria-pressed="true"] .cp-title{opacity:.75}
+.coupon[aria-pressed="true"] .cp-stamp{
+  opacity:.95;
+  transform:rotate(-11deg) scale(1);
+  transition:opacity .3s ease .25s, transform .5s cubic-bezier(.34,1.7,.64,1) .25s;
+}
+.coupon.tear{animation:tearShake .42s ease-in-out}
+@keyframes tearShake{
+  0%,100%{margin-left:0}
+  25%{margin-left:-3px}
+  60%{margin-left:3px}
+}
+
+.coupon.hero{
+  background:linear-gradient(180deg,#fffdf6 0%,#fff4f8 100%);
+  box-shadow:0 5px 0 rgba(74,63,99,.14), 0 0 0 3px rgba(246,168,200,.35);
+}
+.cp-ribbon{
+  position:absolute;
+  top:-12px;right:14px;
+  background:var(--flower);
+  border:2.5px solid var(--ink);
+  border-radius:999px;
+  padding:2px 10px;
+  font-family:var(--ui);
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:.4px;
+  color:var(--ink);
+  text-transform:uppercase;
+  z-index:3;
+}
+.cp-count{
+  display:block;
+  text-align:center;
+  font-family:var(--ui);
+  font-weight:600;
+  font-size:13px;
+  color:var(--ink-soft);
+  margin:16px 0 0;
+}
+.cp-foot{
+  font-family:var(--hand);
+  font-size:17px;
+  text-align:center;
+  color:var(--ink-soft);
+  margin:10px 6px 0;
+}
+
+/* ---------- карточка ---------- */
+.card{
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:26px;
+  padding:18px 18px 20px;
+  box-shadow:0 10px 0 rgba(74,63,99,.10), 0 18px 34px rgba(110,86,168,.16);
+}
+.plant-box{display:block;width:100%;max-width:290px;margin:0 auto;height:auto}
+
+.caption{
+  font-family:var(--hand);
+  font-size:clamp(19px,5.2vw,22px);
+  line-height:1.35;
+  text-align:center;
+  margin:6px 6px 0;
+  min-height:3.1em;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--ink);
+}
+.caption.fade{animation:fadeUp .5s ease-out}
+
+/* ---------- кнопки ---------- */
+.btn{
+  font-family:var(--ui);
+  font-weight:700;
+  font-size:17px;
+  letter-spacing:.2px;
+  color:var(--ink);
+  background:#ffe3ef;
+  border:3px solid var(--ink);
+  border-radius:999px;
+  padding:14px 30px;
+  cursor:pointer;
+  box-shadow:0 5px 0 var(--ink);
+  transition:transform .12s ease, box-shadow .12s ease, opacity .3s ease;
+  display:block;
+  margin:18px auto 0;
+  min-height:52px;
+}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px}
+.btn[hidden]{display:none}
+.btn-drop{width:15px;height:19px;flex:0 0 auto;display:block}
+.btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--ink)}
+.btn.gone{opacity:0;transform:translateY(8px) scale(.94)}
+.btn:disabled{opacity:.5;cursor:default}
+:focus-visible{outline:3px dashed #8a6fd0;outline-offset:4px;border-radius:14px}
+
+.hint{
+  font-family:var(--ui);
+  font-size:13px;
+  text-align:center;
+  color:var(--ink-soft);
+  margin:10px 0 0;
+}
+
+/* ---------- анимации растения ---------- */
+.stage{display:none}
+.stage.on{display:block}
+.stage.pop{
+  animation:pop .62s cubic-bezier(.34,1.56,.64,1);
+  transform-box:fill-box;
+  transform-origin:center bottom;
+}
+@keyframes pop{
+  0%{transform:scale(.35) translateY(6px);opacity:.2}
+  45%{transform:scale(1.12) translateY(0);opacity:1}
+  70%{transform:scale(.95)}
+  85%{transform:scale(1.04)}
+  100%{transform:scale(1)}
+}
+.pot-group{transform-box:fill-box;transform-origin:center bottom}
+.wobble .pot-group{animation:wobble .75s ease-in-out}
+@keyframes wobble{
+  0%,100%{transform:rotate(0)}
+  18%{transform:rotate(-3.5deg)}
+  40%{transform:rotate(2.6deg)}
+  62%{transform:rotate(-1.6deg)}
+  82%{transform:rotate(.8deg)}
+}
+.drop{opacity:0}
+.watering .drop{animation:fall-drop .72s ease-in forwards}
+.watering .drop:nth-of-type(2){animation-delay:.08s}
+.watering .drop:nth-of-type(3){animation-delay:.16s}
+.watering .drop:nth-of-type(4){animation-delay:.05s}
+.watering .drop:nth-of-type(5){animation-delay:.21s}
+.watering .drop:nth-of-type(6){animation-delay:.13s}
+@keyframes fall-drop{
+  0%{opacity:0;transform:translateY(-14px) scale(.7)}
+  18%{opacity:1;transform:translateY(6px) scale(1)}
+  86%{opacity:1}
+  100%{opacity:0;transform:translateY(96px) scale(.8)}
+}
+.tw{opacity:.95;transform-box:fill-box;transform-origin:center}
+.stage.on[data-stage="5"] .tw{animation:twinkle 1.5s ease-in-out 6 both}
+.stage.on[data-stage="5"] .tw:nth-of-type(2){animation-delay:.35s}
+.stage.on[data-stage="5"] .tw:nth-of-type(3){animation-delay:.7s}
+.stage.on[data-stage="5"] .tw:nth-of-type(4){animation-delay:1.05s}
+@keyframes twinkle{
+  0%,100%{transform:scale(.7) rotate(0);opacity:.45}
+  50%{transform:scale(1.15) rotate(18deg);opacity:1}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* ---------- автомат ---------- */
+.vm-section{margin-top:32px}
+.vm-section[hidden]{display:none}
+.vm-lead{
+  font-family:var(--hand);
+  font-size:clamp(20px,5.4vw,23px);
+  text-align:center;
+  margin:0 0 14px;
+  line-height:1.35;
+}
+.vm-section.reveal{animation:slideUp .85s cubic-bezier(.22,1,.36,1) both}
+@keyframes slideUp{from{opacity:0;transform:translateY(64px)}to{opacity:1;transform:none}}
+
+.vm-card{
+  padding:18px 18px 22px;
+  background:linear-gradient(180deg,#faf7ff 0%,#f1e9fd 100%);
+}
+.vm-wrap{position:relative;width:100%;max-width:330px;margin:0 auto}
+.vm-svg{display:block;width:100%;height:auto;transform-box:fill-box;transform-origin:center bottom}
+.vm-wrap.shake .vm-svg{animation:shake .5s ease-in-out}
+@keyframes shake{
+  0%,100%{transform:translateX(0) rotate(0)}
+  18%{transform:translateX(-3px) rotate(-1.1deg)}
+  42%{transform:translateX(3px) rotate(1.1deg)}
+  68%{transform:translateX(-2px) rotate(-.5deg)}
+}
+
+.vm-slot{
+  position:absolute;
+  left:30%;top:53.5%;width:40%;height:34.5%;
+  overflow:hidden;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:2%;
+  pointer-events:none;
+}
+.vm-slot.free{overflow:visible}
+.capsule{width:34%;max-width:47px;height:auto;display:block}
+.capsule.fall{animation:capfall .82s cubic-bezier(.3,.7,.4,1) both}
+@keyframes capfall{
+  0%{transform:translateY(-118px) rotate(-24deg);opacity:0}
+  12%{opacity:1}
+  46%{transform:translateY(0) rotate(10deg)}
+  60%{transform:translateY(-20px) rotate(-7deg)}
+  74%{transform:translateY(0) rotate(4deg)}
+  87%{transform:translateY(-6px) rotate(-2deg)}
+  100%{transform:translateY(0) rotate(0)}
+}
+.capsule.wait{animation:wiggle .5s ease-in-out 2 both}
+@keyframes wiggle{
+  0%,100%{transform:rotate(0) scale(1)}
+  28%{transform:rotate(-7deg) scale(1.05)}
+  64%{transform:rotate(7deg) scale(1.05)}
+}
+.cap-top,.cap-bot{transform-box:fill-box;transform-origin:center}
+.capsule.open .cap-top{animation:capTop .6s cubic-bezier(.3,.9,.4,1) forwards}
+.capsule.open .cap-bot{animation:capBot .6s ease-out forwards}
+@keyframes capTop{
+  0%{transform:none;opacity:1}
+  45%{transform:translate(-10px,-24px) rotate(-36deg);opacity:1}
+  100%{transform:translate(-20px,-38px) rotate(-64deg);opacity:0}
+}
+@keyframes capBot{
+  0%{transform:none;opacity:1}
+  45%{transform:translate(7px,3px) rotate(13deg);opacity:1}
+  100%{transform:translate(15px,9px) rotate(28deg);opacity:0}
+}
+
+.sparks{position:absolute;left:24%;top:64%;width:52%;height:28%;pointer-events:none}
+.sp{position:absolute;width:15px;height:15px;opacity:0}
+.sp:nth-child(1){left:2%;top:40%}
+.sp:nth-child(2){left:22%;top:6%}
+.sp:nth-child(3){left:48%;top:24%}
+.sp:nth-child(4){left:74%;top:4%}
+.sp:nth-child(5){left:90%;top:44%}
+.sparks.pop .sp{animation:sparkout .75s ease-out both}
+.sparks.pop .sp:nth-child(2){animation-delay:.06s}
+.sparks.pop .sp:nth-child(3){animation-delay:.12s}
+.sparks.pop .sp:nth-child(4){animation-delay:.04s}
+.sparks.pop .sp:nth-child(5){animation-delay:.1s}
+@keyframes sparkout{
+  0%{opacity:0;transform:scale(.2) rotate(0)}
+  35%{opacity:1;transform:scale(1.3) rotate(35deg)}
+  100%{opacity:0;transform:scale(.6) rotate(80deg) translateY(-14px)}
+}
+
+.vm-knob{
+  position:absolute;
+  left:40.9%;top:54.6%;
+  width:18.2%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  border:3px solid var(--ink);
+  background:radial-gradient(circle at 34% 28%,#ffd3e5 0%,#f6a8c8 58%,#eb87b1 100%);
+  box-shadow:0 5px 0 var(--ink);
+  cursor:pointer;
+  padding:0;
+  display:grid;place-items:center;
+  transition:transform .1s ease, box-shadow .1s ease;
+}
+.vm-knob svg{width:62%;height:62%;display:block}
+.vm-knob:active{transform:translateY(5px);box-shadow:0 0 0 var(--ink)}
+.vm-wrap.shake .vm-knob svg{animation:turn .55s cubic-bezier(.5,0,.3,1)}
+@keyframes turn{from{transform:rotate(0)}to{transform:rotate(150deg)}}
+
+.counter{
+  display:inline-block;
+  margin:14px 0 0;
+  background:#f3ecff;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  padding:5px 14px;
+  font-family:var(--ui);
+  font-weight:700;
+  font-size:13px;
+  color:var(--ink);
+}
+
+.foot{
+  font-family:var(--hand);
+  font-size:17px;
+  text-align:center;
+  color:var(--ink-soft);
+  margin:26px 0 0;
+}
+
+@media (max-width:360px){
+  .card{padding:14px 13px 16px}
+  .btn{font-size:16px;padding:13px 24px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .drop{display:none}
+}
+</style>
+</head>
+<body>
+<main class="app">
+
+  <header class="intro">
+    <p class="hi">эй, Джамка</p>
+    <p class="dedic">
+      <svg class="dedic-star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#f9d05c" stroke="#5b4a78" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span>не грусти. прими этот подарок от меня.</span>
+      <svg class="dedic-star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#f6a8c8" stroke="#5b4a78" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="части открытки">
+    <button class="tab" id="tab-p1" type="button" role="tab" aria-selected="true" aria-controls="p1">цветок</button>
+    <button class="tab" id="tab-p2" type="button" role="tab" aria-selected="false" aria-controls="p2">автомат<span class="dot"></span></button>
+    <button class="tab" id="tab-p3" type="button" role="tab" aria-selected="false" aria-controls="p3">лего<span class="dot"></span></button>
+    <button class="tab" id="tab-p4" type="button" role="tab" aria-selected="false" aria-controls="p4">письма<span class="dot"></span></button>
+    <button class="tab" id="tab-p5" type="button" role="tab" aria-selected="false" aria-controls="p5">купоны<span class="dot"></span></button>
+  </nav>
+
+  <section class="panel" id="p1" role="tabpanel" aria-labelledby="tab-p1" tabindex="-1">
+  <h1>маленькое растение<br>для длинного дня</h1>
+
+  <section class="card">
+    <svg class="plant-box" id="plant" viewBox="0 0 200 260" role="img" aria-labelledby="plantTitle">
+      <title id="plantTitle">горшочек с мордочкой и растением внутри</title>
+
+      <!-- фоновые искры -->
+      <g opacity=".55" fill="#c9b6e8">
+        <path d="M26 42 q1.4 -6.6 2.8 0 q6.6 1.4 0 2.8 q-1.4 6.6 -2.8 0 q-6.6 -1.4 0 -2.8 Z"/>
+        <path d="M176 70 q1.2 -5.6 2.4 0 q5.6 1.2 0 2.4 q-1.2 5.6 -2.4 0 q-5.6 -1.2 0 -2.4 Z"/>
+      </g>
+      <g opacity=".6" fill="#f9d05c">
+        <path d="M166 34 q1.6 -7.4 3.2 0 q7.4 1.6 0 3.2 q-1.6 7.4 -3.2 0 q-7.4 -1.6 0 -3.2 Z"/>
+        <path d="M22 104 q1.2 -5.6 2.4 0 q5.6 1.2 0 2.4 q-1.2 5.6 -2.4 0 q-5.6 -1.2 0 -2.4 Z"/>
+      </g>
+
+      <!-- капли -->
+      <g class="drops" aria-hidden="true">
+        <g transform="translate(80,44)"><path class="drop" d="M0 0c3.2 4.4 5 6.6 5 8.6a5 5 0 0 1-10 0c0-2 1.8-4.2 5-8.6z" fill="var(--water)"/></g>
+        <g transform="translate(100,36)"><path class="drop" d="M0 0c3.2 4.4 5 6.6 5 8.6a5 5 0 0 1-10 0c0-2 1.8-4.2 5-8.6z" fill="var(--water)"/></g>
+        <g transform="translate(120,46)"><path class="drop" d="M0 0c3.2 4.4 5 6.6 5 8.6a5 5 0 0 1-10 0c0-2 1.8-4.2 5-8.6z" fill="var(--water)"/></g>
+        <g transform="translate(68,54)"><path class="drop" d="M0 0c2.6 3.6 4 5.4 4 7a4 4 0 0 1-8 0c0-1.6 1.4-3.4 4-7z" fill="var(--water)"/></g>
+        <g transform="translate(132,56)"><path class="drop" d="M0 0c2.6 3.6 4 5.4 4 7a4 4 0 0 1-8 0c0-1.6 1.4-3.4 4-7z" fill="var(--water)"/></g>
+        <g transform="translate(91,58)"><path class="drop" d="M0 0c2.2 3 3.4 4.6 3.4 6a3.4 3.4 0 0 1-6.8 0c0-1.4 1.2-3 3.4-6z" fill="var(--water)"/></g>
+      </g>
+
+      <g class="pot-group">
+
+        <!-- растение -->
+        <g class="stage" data-stage="1">
+          <ellipse cx="100" cy="138" rx="9.5" ry="11.5" fill="#c8996b" stroke="var(--ink)" stroke-width="3"/>
+          <path d="M100 132 q0 -9 7.5 -12" fill="none" stroke="var(--leaf-dark)" stroke-width="4" stroke-linecap="round"/>
+          <ellipse cx="109" cy="118" rx="6" ry="4" transform="rotate(-28 109 118)" fill="var(--leaf)" stroke="var(--ink)" stroke-width="2.6"/>
+        </g>
+
+        <g class="stage" data-stage="2">
+          <path d="M100 148 V112" fill="none" stroke="var(--stem)" stroke-width="5.5" stroke-linecap="round"/>
+          <g stroke="var(--ink)" stroke-width="3">
+            <ellipse cx="83" cy="120" rx="14" ry="8" transform="rotate(-22 83 120)" fill="var(--leaf)"/>
+            <ellipse cx="117" cy="120" rx="14" ry="8" transform="rotate(22 117 120)" fill="var(--leaf)"/>
+          </g>
+          <path d="M92 122 q-6 -2 -10 -4 M108 122 q6 -2 10 -4" fill="none" stroke="var(--leaf-dark)" stroke-width="2" stroke-linecap="round"/>
+        </g>
+
+        <g class="stage" data-stage="3">
+          <path d="M100 148 V92" fill="none" stroke="var(--stem)" stroke-width="6" stroke-linecap="round"/>
+          <g stroke="var(--ink)" stroke-width="3">
+            <ellipse cx="74" cy="110" rx="20" ry="11" transform="rotate(-20 74 110)" fill="var(--leaf)"/>
+            <ellipse cx="126" cy="110" rx="20" ry="11" transform="rotate(20 126 110)" fill="var(--leaf)"/>
+            <ellipse cx="88" cy="127" rx="11" ry="6.5" transform="rotate(-18 88 127)" fill="var(--leaf-dark)"/>
+            <ellipse cx="100" cy="85" rx="10.5" ry="6.5" transform="rotate(-74 100 85)" fill="var(--leaf)"/>
+          </g>
+          <path d="M90 114 q-8 -3 -14 -5 M110 114 q8 -3 14 -5" fill="none" stroke="var(--leaf-dark)" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+
+        <g class="stage" data-stage="4">
+          <path d="M100 148 V72" fill="none" stroke="var(--stem)" stroke-width="6" stroke-linecap="round"/>
+          <g stroke="var(--ink)" stroke-width="3">
+            <ellipse cx="72" cy="112" rx="21" ry="11.5" transform="rotate(-20 72 112)" fill="var(--leaf)"/>
+            <ellipse cx="128" cy="112" rx="21" ry="11.5" transform="rotate(20 128 112)" fill="var(--leaf)"/>
+            <ellipse cx="85" cy="128" rx="12" ry="7" transform="rotate(-18 85 128)" fill="var(--leaf-dark)"/>
+            <path d="M100 74 c-10 0 -14.5 -9 -11 -18 c3.4 -8.6 7.6 -12.6 11 -12.6 s7.6 4 11 12.6 c3.5 9 -1 18 -11 18 Z" fill="var(--flower)"/>
+            <path d="M89 70 q11 6 22 0 q-4 8 -11 8 t-11 -8 Z" fill="var(--leaf-dark)"/>
+          </g>
+          <path d="M100 48 q-4 10 -2 22 M100 48 q4 10 2 22" fill="none" stroke="var(--flower-dark)" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+
+        <g class="stage" data-stage="5">
+          <path d="M100 148 V70" fill="none" stroke="var(--stem)" stroke-width="6" stroke-linecap="round"/>
+          <g stroke="var(--ink)" stroke-width="3">
+            <ellipse cx="70" cy="114" rx="22" ry="12" transform="rotate(-20 70 114)" fill="var(--leaf)"/>
+            <ellipse cx="130" cy="114" rx="22" ry="12" transform="rotate(20 130 114)" fill="var(--leaf)"/>
+            <ellipse cx="84" cy="130" rx="12" ry="7" transform="rotate(-18 84 130)" fill="var(--leaf-dark)"/>
+          </g>
+          <g stroke="var(--ink)" stroke-width="3" fill="var(--flower)">
+            <g transform="rotate(0 100 56)"><ellipse cx="100" cy="37" rx="10.5" ry="14"/></g>
+            <g transform="rotate(60 100 56)"><ellipse cx="100" cy="37" rx="10.5" ry="14"/></g>
+            <g transform="rotate(120 100 56)"><ellipse cx="100" cy="37" rx="10.5" ry="14"/></g>
+            <g transform="rotate(180 100 56)"><ellipse cx="100" cy="37" rx="10.5" ry="14"/></g>
+            <g transform="rotate(240 100 56)"><ellipse cx="100" cy="37" rx="10.5" ry="14"/></g>
+            <g transform="rotate(300 100 56)"><ellipse cx="100" cy="37" rx="10.5" ry="14"/></g>
+          </g>
+          <circle cx="100" cy="56" r="10" fill="var(--yellow)" stroke="var(--ink)" stroke-width="3"/>
+          <g fill="var(--yellow)">
+            <g transform="translate(64,34)"><path class="tw" d="M0 -8 q1.7 6.3 8 8 q-6.3 1.7 -8 8 q-1.7 -6.3 -8 -8 q6.3 -1.7 8 -8 Z"/></g>
+            <g transform="translate(138,40)"><path class="tw" d="M0 -7 q1.5 5.5 7 7 q-5.5 1.5 -7 7 q-1.5 -5.5 -7 -7 q5.5 -1.5 7 -7 Z"/></g>
+            <g transform="translate(132,84)"><path class="tw" d="M0 -5.5 q1.2 4.3 5.5 5.5 q-4.3 1.2 -5.5 5.5 q-1.2 -4.3 -5.5 -5.5 q4.3 -1.2 5.5 -5.5 Z"/></g>
+            <g transform="translate(60,76)"><path class="tw" d="M0 -6 q1.3 4.7 6 6 q-4.7 1.3 -6 6 q-1.3 -4.7 -6 -6 q4.7 -1.3 6 -6 Z"/></g>
+          </g>
+        </g>
+
+        <!-- горшок -->
+        <ellipse cx="100" cy="242" rx="56" ry="9" fill="#d9cbf0" opacity=".8"/>
+        <path d="M55 156 L145 156 L134 228 q-1.6 9 -10.6 9 H76.6 q-9 0 -10.6 -9 Z"
+              fill="var(--pot)" stroke="var(--ink)" stroke-width="3.4" stroke-linejoin="round"/>
+        <path d="M118 164 q9 30 5 66" fill="none" stroke="#ffffff" stroke-width="7" opacity=".35" stroke-linecap="round"/>
+        <rect x="46" y="138" width="108" height="24" rx="12" fill="var(--pot-rim)" stroke="var(--ink)" stroke-width="3.4"/>
+        <path d="M58 150 h30" stroke="#ffffff" stroke-width="5" opacity=".35" stroke-linecap="round"/>
+        <ellipse cx="100" cy="146" rx="47" ry="7" fill="var(--soil)"/>
+
+        <!-- мордочка -->
+        <g>
+          <ellipse cx="70" cy="198" rx="9" ry="5.6" fill="#f7a9c6" opacity=".85"/>
+          <ellipse cx="130" cy="198" rx="9" ry="5.6" fill="#f7a9c6" opacity=".85"/>
+          <circle cx="85" cy="188" r="4.6" fill="var(--ink)"/>
+          <circle cx="115" cy="188" r="4.6" fill="var(--ink)"/>
+          <path d="M92 197 q8 8 16 0" fill="none" stroke="var(--ink)" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+      </g>
+    </svg>
+
+    <p class="caption" id="caption" role="status" aria-live="polite">он пока спит в земле. полей — и посмотрим, что будет.</p>
+
+    <button class="btn" id="waterBtn" type="button">
+      <svg class="btn-drop" viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1c4.6 6.4 6.6 9.4 6.6 12.2a6.6 6.6 0 0 1-13.2 0C1.4 10.4 3.4 7.4 8 1z" fill="#9ad4ef" stroke="#4a3f63" stroke-width="2" stroke-linejoin="round"/></svg>
+      <span>полить</span>
+    </button>
+    <p class="hint" id="hint">пять раз. торопиться некуда.</p>
+
+    <button class="btn btn-open" id="openBtn" type="button" hidden aria-controls="p2">
+      <svg class="btn-star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#f9d05c" stroke="#5b4a78" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span class="lbl">дальше: автомат</span>
+    </button>
+  </section>
+
+  </section>
+
+  <!-- ======= автомат ======= -->
+  <section class="panel vm-section" id="p2" role="tabpanel" aria-labelledby="tab-p2" tabindex="-1" hidden>
+    <h1>автомат<br>с маленькими штуками</h1>
+    <p class="vm-lead">крути, когда день опять душный.</p>
+
+    <div class="card vm-card">
+      <div class="vm-wrap" id="vmWrap">
+        <svg class="vm-svg" viewBox="0 0 220 280" role="img" aria-labelledby="vmTitle">
+          <title id="vmTitle">автомат с капсулами: стеклянный купол, ручка и лоток выдачи</title>
+
+          <ellipse cx="110" cy="270" rx="88" ry="9" fill="#d9cbf0" opacity=".85"/>
+
+          <!-- купол с капсулами -->
+          <circle cx="110" cy="82" r="64" fill="#f5faff" stroke="var(--ink)" stroke-width="3.4"/>
+          <g stroke="var(--ink)" stroke-width="2.6">
+            <g transform="translate(80,118)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#f6a8c8" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(112,120)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#9ad4ef" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(144,116)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#f9d05c" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(66,90)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#9fd8b4" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(98,92)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#c9b6e8" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(130,90)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#ffb3a7" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(158,88)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#f6a8c8" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(84,62)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#f9d05c" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(116,62)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#9ad4ef" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(146,60)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#c9b6e8" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(100,36)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#9fd8b4" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+            <g transform="translate(132,34)"><circle r="15" fill="#fffdf9"/><path d="M-15 0 a15 15 0 0 1 30 0 Z" fill="#f6a8c8" stroke="none"/><path d="M-15 0 h30"/><ellipse cx="-5" cy="-6" rx="3.6" ry="2.4" fill="#fff" opacity=".85" stroke="none" transform="rotate(-25 -5 -6)"/></g>
+          </g>
+          <circle cx="110" cy="82" r="64" fill="none" stroke="var(--ink)" stroke-width="3.4"/>
+          <path d="M70 46 q16 -22 42 -23" fill="none" stroke="#ffffff" stroke-width="11" opacity=".72" stroke-linecap="round"/>
+          <path d="M58 72 q2 -11 8 -19" fill="none" stroke="#ffffff" stroke-width="6" opacity=".5" stroke-linecap="round"/>
+
+          <!-- воротник и корпус -->
+          <rect x="46" y="112" width="128" height="20" rx="10" fill="var(--pot-dark)" stroke="var(--ink)" stroke-width="3.4"/>
+          <rect x="30" y="126" width="160" height="132" rx="20" fill="var(--pot)" stroke="var(--ink)" stroke-width="3.4"/>
+          <path d="M50 144 v72" fill="none" stroke="#ffffff" stroke-width="8" opacity=".3" stroke-linecap="round"/>
+          <rect x="46" y="252" width="30" height="16" rx="8" fill="var(--pot-dark)" stroke="var(--ink)" stroke-width="3"/>
+          <rect x="144" y="252" width="30" height="16" rx="8" fill="var(--pot-dark)" stroke="var(--ink)" stroke-width="3"/>
+
+          <!-- табличка с котом -->
+          <rect x="64" y="126" width="92" height="24" rx="12" fill="var(--yellow)" stroke="var(--ink)" stroke-width="3"/>
+          <g transform="translate(110,138)">
+            <path d="M-8.5 -3 L-9.5 -10 L-3 -6.5 Z" fill="#fffdf9" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M8.5 -3 L9.5 -10 L3 -6.5 Z" fill="#fffdf9" stroke="var(--ink)" stroke-width="1.8" stroke-linejoin="round"/>
+            <ellipse cx="0" cy="1" rx="9" ry="7.6" fill="#fffdf9" stroke="var(--ink)" stroke-width="1.8"/>
+            <circle cx="-3.4" cy="-.4" r="1.5" fill="var(--ink)"/>
+            <circle cx="3.4" cy="-.4" r="1.5" fill="var(--ink)"/>
+            <path d="M-2 3.4 q2 2 4 0" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          <g fill="#fffdf9" opacity=".95">
+            <path d="M80 138 q.9 3.4 4.5 4.5 q-3.6 1.1 -4.5 4.5 q-1.1 -3.4 -4.5 -4.5 q3.4 -1.1 4.5 -4.5 Z"/>
+            <path d="M140 132 q.9 3.4 4.5 4.5 q-3.6 1.1 -4.5 4.5 q-1.1 -3.4 -4.5 -4.5 q3.4 -1.1 4.5 -4.5 Z"/>
+          </g>
+
+          <!-- панель и монетоприёмник -->
+          <circle cx="110" cy="177" r="24" fill="var(--pot-dark)" stroke="var(--ink)" stroke-width="3.2"/>
+          <rect x="148" y="172" width="24" height="8" rx="4" fill="var(--ink)" opacity=".5"/>
+          <rect x="44" y="166" width="28" height="19" rx="6" fill="#fffdf9" stroke="var(--ink)" stroke-width="2.6" opacity=".92"/>
+          <g stroke="var(--ink)" stroke-width="1.8" opacity=".35"><path d="M50 173 h16M50 179 h11"/></g>
+
+          <!-- лоток -->
+          <rect x="58" y="202" width="104" height="12" rx="6" fill="var(--pot-dark)" stroke="var(--ink)" stroke-width="3"/>
+          <rect x="58" y="210" width="104" height="44" rx="12" fill="#8b73c2" stroke="var(--ink)" stroke-width="3.2"/>
+          <rect x="66" y="216" width="88" height="32" rx="9" fill="#6f58a6"/>
+          <path d="M66 248 h88" stroke="#463a61" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+        </svg>
+
+        <div class="vm-slot" id="slot" aria-hidden="true"></div>
+
+        <div class="sparks" id="sparks" aria-hidden="true">
+          <span class="sp"><svg viewBox="0 0 20 20"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#f9d05c"/></svg></span>
+          <span class="sp"><svg viewBox="0 0 20 20"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#f6a8c8"/></svg></span>
+          <span class="sp"><svg viewBox="0 0 20 20"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#f9d05c"/></svg></span>
+          <span class="sp"><svg viewBox="0 0 20 20"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#c9b6e8"/></svg></span>
+          <span class="sp"><svg viewBox="0 0 20 20"><path d="M10 1 q2 7 9 9 q-7 2 -9 9 q-2 -7 -9 -9 q7 -2 9 -9 Z" fill="#9ad4ef"/></svg></span>
+        </div>
+
+        <button class="vm-knob" id="vmBtn" type="button" aria-label="крутануть ручку и получить штуку">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="17" fill="#fffdf9" stroke="#5b4a78" stroke-width="3"/>
+            <path d="M20 5 v30M5 20 h30" stroke="#5b4a78" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="4" fill="#f6a8c8" stroke="#5b4a78" stroke-width="2.4"/>
+          </svg>
+        </button>
+      </div>
+      <p class="vm-hint" id="vmHint">крутани ручку.</p>
+    </div>
+
+  </section>
+
+  <!-- ======= лего ======= -->
+  <section class="panel" id="p3" role="tabpanel" aria-labelledby="tab-p3" tabindex="-1" hidden>
+    <h1>инструкция<br>по сборке дня</h1>
+    <p class="vm-lead">девять деталей. по одной, без спешки.</p>
+
+    <div class="card lego-card">
+      <svg class="build-box" id="build" viewBox="0 0 180 212" role="img" aria-labelledby="buildTitle">
+        <title id="buildTitle">кот, который собирается из лего-кубиков</title>
+        <g id="buildSparks" opacity="0">
+          <path d="M24 60 q1.5 5.6 7 7 q-5.6 1.5 -7 7 q-1.5 -5.6 -7 -7 q5.6 -1.5 7 -7 Z" fill="#f9d05c"/>
+          <path d="M158 92 q1.3 4.8 6 6 q-4.8 1.3 -6 6 q-1.3 -4.8 -6 -6 q4.8 -1.3 6 -6 Z" fill="#f6a8c8"/>
+          <path d="M150 40 q1.1 4.2 5.2 5.2 q-4.2 1.1 -5.2 5.2 q-1.1 -4.2 -5.2 -5.2 q4.2 -1.1 5.2 -5.2 Z" fill="#c9b6e8"/>
+          <path d="M28 128 q1.1 4.2 5.2 5.2 q-4.2 1.1 -5.2 5.2 q-1.1 -4.2 -5.2 -5.2 q4.2 -1.1 5.2 -5.2 Z" fill="#f9d05c"/>
+        </g>
+        <g id="bricks"></g>
+        <g>
+          <rect x="8" y="186" width="164" height="18" rx="5" fill="#a9dcb4" stroke="#5b4a78" stroke-width="3"/>
+          <path d="M14 198 h152" stroke="#ffffff" stroke-width="3" opacity=".28" stroke-linecap="round"/>
+        </g>
+        <ellipse cx="90" cy="208" rx="72" ry="5" fill="#d9cbf0" opacity=".8"/>
+      </svg>
+
+      <p class="lego-hint" id="legoHint">отмечай, что получилось. кот собирается сам.</p>
+
+      <div class="steps" id="steps" role="group" aria-label="шаги"></div>
+
+      <p class="lego-done" id="legoDone" hidden>собрано. на сегодня — достаточно.</p>
+    </div>
+  </section>
+
+  <!-- ======= письма ======= -->
+  <section class="panel" id="p4" role="tabpanel" aria-labelledby="tab-p4" tabindex="-1" hidden>
+    <h1>письма,<br>которые можно открыть</h1>
+    <p class="vm-lead">по одному. когда захочется.</p>
+
+    <div class="card letters-card">
+      <div class="env-grid" id="envGrid"></div>
+      <span class="letters-count" id="lettersCount">открыто: 0 из 6</span>
+
+      <div class="note" id="note" hidden>
+        <span class="tape tape-l"></span>
+        <span class="tape tape-r"></span>
+        <p class="note-text" id="noteText"></p>
+        <svg class="note-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 q2 8 10 10 q-8 2 -10 10 q-2 -8 -10 -10 q8 -2 10 -10 Z" fill="#f9d05c" stroke="#5b4a78" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= купоны ======= -->
+  <section class="panel" id="p5" role="tabpanel" aria-labelledby="tab-p5" tabindex="-1" hidden>
+    <h1>книжечка<br>купонов</h1>
+    <p class="vm-lead">отрывай, когда понадобится. срок не сгорает.</p>
+
+    <div class="card cp-card">
+      <div class="cp-list" id="cpList"></div>
+      <span class="cp-count" id="cpCount">оторвано: 0 из 6</span>
+      <p class="cp-foot">оторванный купон не исчезает. его можно предъявить снова.</p>
+    </div>
+  </section>
+
+  <p class="foot">Джамка, сегодня можно просто дожить до вечера. это нормальный план.</p>
+  <div class="modal" id="gift" hidden role="dialog" aria-modal="true" aria-labelledby="giftCap">
+    <div class="gift" id="giftCard">
+      <p class="gift-cap" id="giftCap">тебе выпало</p>
+      <div class="gift-art" id="giftArt" aria-hidden="true"></div>
+      <p class="gift-text" id="giftText"></p>
+      <p class="counter" id="counter">котов сегодня: 0</p>
+      <div class="gift-actions">
+        <button class="gift-btn gift-more" id="giftMore" type="button">ещё раз</button>
+        <button class="gift-btn gift-close" id="giftClose" type="button">спасибо</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function(id){ return document.getElementById(id); };
+
+  var plant   = $("plant"),
+      waterBtn= $("waterBtn"),
+      caption = $("caption"),
+      hint    = $("hint"),
+      openBtn = $("openBtn"),
+      vmHint  = $("vmHint"),
+      vmWrap  = $("vmWrap"),
+      vmBtn   = $("vmBtn"),
+      slot    = $("slot"),
+      sparks  = $("sparks"),
+      gift    = $("gift"),
+      giftCard= $("giftCard"),
+      giftArt = $("giftArt"),
+      giftText= $("giftText"),
+      giftMore= $("giftMore"),
+      giftClose=$("giftClose"),
+      counter = $("counter");
+
+  var stages = Array.prototype.slice.call(document.querySelectorAll(".stage"));
+
+  var caps = [
+    "оки. что-то зелёное появилось.",
+    "оно не выросло за день. и не должно было.",
+    "медленно — это тоже считается. оно всё ещё растёт.",
+    "бутон — это уже почти. просто снаружи пока не видно.",
+    "вот. столько времени, а потом раз — и цветок. твоя магистерская такая же."
+  ];
+
+  function replay(el, cls){
+    el.classList.remove(cls);
+    void el.getBoundingClientRect().width;
+    el.classList.add(cls);
+  }
+
+  /* ---------- растение ---------- */
+  var stage = 0, busy = false;
+
+  waterBtn.addEventListener("click", function(){
+    if (busy || stage >= 5) return;
+    busy = true;
+    waterBtn.disabled = true;
+    replay(plant, "watering");
+
+    setTimeout(function(){
+      stage++;
+      stages.forEach(function(g){
+        g.classList.toggle("on", Number(g.getAttribute("data-stage")) === stage);
+        if (Number(g.getAttribute("data-stage")) !== stage) g.classList.remove("pop");
+      });
+      var cur = stages[stage - 1];
+      replay(cur, "pop");
+      replay(plant, "wobble");
+
+      caption.textContent = caps[stage - 1];
+      replay(caption, "fade");
+
+      if (stage < 5){
+        hint.textContent = "осталось поливов: " + (5 - stage);
+        waterBtn.disabled = false;
+        busy = false;
+      } else {
+        hint.textContent = "всё, дальше оно само.";
+        showToggle();
+      }
+    }, reduced ? 0 : 520);
+  });
+
+  function showToggle(){
+    waterBtn.classList.add("gone");
+    setTimeout(function(){
+      waterBtn.hidden = true;
+      openBtn.hidden = false;
+      $("tab-p2").classList.add("fresh");
+      $("tab-p3").classList.add("fresh");
+      $("tab-p4").classList.add("fresh");
+      $("tab-p5").classList.add("fresh");
+      requestAnimationFrame(function(){ openBtn.classList.add("in"); });
+      busy = false;
+    }, reduced ? 0 : 340);
+  }
+
+  openBtn.addEventListener("click", function(){
+    selectTab(1);
+  });
+
+  /* ---------- палитра и кирпичики котов ---------- */
+  var INK = "#5b4a78", DARK = "#463a61", FUR = "#fbe0c0", FUR2 = "#f0cda4",
+      EARIN = "#f4b3cd", NOSE = "#e98fae", PINK = "#f6a8c8", WHITE = "#fffdf9",
+      YEL = "#f9d05c", LIL = "#c9b6e8", GREEN = "#8fc98a", BROWN = "#c08a5e";
+
+  function r(v){ return Math.round(v * 100) / 100; }
+
+  function ear(hx, hy, s, side){
+    var ax = hx + side*12.6*s, ay = hy - 4*s,
+        bx = hx + side*13.6*s, by = hy - 16.5*s,
+        cx = hx + side*3.2*s,  cy = hy - 11.4*s;
+    var gx = (ax+bx+cx)/3, gy = (ay+by+cy)/3;
+    function L(px, py, t){ return r(px + (gx-px)*t) + " " + r(py + (gy-py)*t); }
+    return '<path d="M'+r(ax)+' '+r(ay)+' L'+r(bx)+' '+r(by)+' L'+r(cx)+' '+r(cy)+' Z" fill="'+FUR+'" stroke="'+INK+'" stroke-width="2" stroke-linejoin="round"/>'
+         + '<path d="M'+L(ax,ay,.34)+' L'+L(bx,by,.34)+' L'+L(cx,cy,.34)+' Z" fill="'+EARIN+'"/>';
+  }
+
+  function eyes(kind, hx, hy, s){
+    if (kind === "none") return "";
+    var L = hx - 6.2*s, R = hx + 6.2*s, y = hy - 0.5*s;
+    if (kind === "closed"){
+      return '<path d="M'+r(L-3.4*s)+' '+r(y+1.5*s)+' q'+r(3.4*s)+' '+r(-4.2*s)+' '+r(6.8*s)+' 0" fill="none" stroke="'+INK+'" stroke-width="2" stroke-linecap="round"/>'
+           + '<path d="M'+r(R-3.4*s)+' '+r(y+1.5*s)+' q'+r(3.4*s)+' '+r(-4.2*s)+' '+r(6.8*s)+' 0" fill="none" stroke="'+INK+'" stroke-width="2" stroke-linecap="round"/>';
+    }
+    if (kind === "flat"){
+      return '<path d="M'+r(L-2.8*s)+' '+r(y)+' h'+r(5.6*s)+'M'+r(R-2.8*s)+' '+r(y)+' h'+r(5.6*s)+'" stroke="'+INK+'" stroke-width="2.2" stroke-linecap="round"/>';
+    }
+    var rx = 2.4*s, ry = 3.2*s, dx = 0;
+    if (kind === "side"){ dx = -1.5*s; }
+    if (kind === "wide"){ rx = 3*s; ry = 3.9*s; }
+    return '<ellipse cx="'+r(L+dx)+'" cy="'+r(y)+'" rx="'+r(rx)+'" ry="'+r(ry)+'" fill="'+INK+'"/>'
+         + '<ellipse cx="'+r(R+dx)+'" cy="'+r(y)+'" rx="'+r(rx)+'" ry="'+r(ry)+'" fill="'+INK+'"/>'
+         + '<circle cx="'+r(L+dx-0.75*s)+'" cy="'+r(y-1.3*s)+'" r="'+r(0.95*s)+'" fill="'+WHITE+'"/>'
+         + '<circle cx="'+r(R+dx-0.75*s)+'" cy="'+r(y-1.3*s)+'" r="'+r(0.95*s)+'" fill="'+WHITE+'"/>';
+  }
+
+  function snout(hx, hy, s){
+    return '<path d="M'+r(hx-1.7*s)+' '+r(hy+3.4*s)+' h'+r(3.4*s)+' l'+r(-1.7*s)+' '+r(1.9*s)+' Z" fill="'+NOSE+'"/>'
+         + '<path d="M'+r(hx-4.6*s)+' '+r(hy+6.6*s)+' q'+r(2.3*s)+' '+r(2.4*s)+' '+r(4.6*s)+' 0 q'+r(2.3*s)+' '+r(2.4*s)+' '+r(4.6*s)+' 0" fill="none" stroke="'+INK+'" stroke-width="1.8" stroke-linecap="round"/>';
+  }
+
+  function blush(hx, hy, s){
+    return '<ellipse cx="'+r(hx-8.6*s)+'" cy="'+r(hy+5*s)+'" rx="'+r(3.7*s)+'" ry="'+r(2.3*s)+'" fill="'+PINK+'" opacity=".7"/>'
+         + '<ellipse cx="'+r(hx+8.6*s)+'" cy="'+r(hy+5*s)+'" rx="'+r(3.7*s)+'" ry="'+r(2.3*s)+'" fill="'+PINK+'" opacity=".7"/>';
+  }
+
+  function whisk(hx, hy, s){
+    return '<g stroke="'+INK+'" stroke-width="1.4" stroke-linecap="round" opacity=".45"><path d="M'+r(hx-20*s)+' '+r(hy+1.5*s)+' h'+r(5*s)+'M'+r(hx-20*s)+' '+r(hy+6*s)+' h'+r(5*s)+'M'+r(hx+20*s)+' '+r(hy+1.5*s)+' h'+r(-5*s)+'M'+r(hx+20*s)+' '+r(hy+6*s)+' h'+r(-5*s)+'"/></g>';
+  }
+
+  function head(hx, hy, s, kind, noWhisk){
+    return ear(hx,hy,s,-1) + ear(hx,hy,s,1)
+         + '<ellipse cx="'+hx+'" cy="'+hy+'" rx="'+r(13.5*s)+'" ry="'+r(12*s)+'" fill="'+FUR+'" stroke="'+INK+'" stroke-width="2"/>'
+         + blush(hx,hy,s) + eyes(kind,hx,hy,s) + snout(hx,hy,s)
+         + (noWhisk ? "" : whisk(hx,hy,s));
+  }
+
+  function belly(cx, cy, w, h){
+    return '<path d="M'+cx+' '+r(cy+h)+' c'+r(-w)+' 0 '+r(-w*1.15)+' '+r(-h*0.45)+' '+r(-w*1.15)+' '+r(-h)
+         + ' 0 '+r(-h*0.95)+' '+r(w*0.52)+' '+r(-h*1.45)+' '+r(w*1.15)+' '+r(-h*1.45)
+         + ' s'+r(w*1.15)+' '+r(h*0.5)+' '+r(w*1.15)+' '+r(h*1.45)
+         + ' 0 '+r(h*0.55)+' '+r(-w*1.15)+' '+r(h)+' Z" fill="'+FUR+'" stroke="'+INK+'" stroke-width="2" stroke-linejoin="round"/>';
+  }
+
+  function paw(cx, cy, rx){
+    return '<ellipse cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+r(rx*0.68)+'" fill="'+FUR+'" stroke="'+INK+'" stroke-width="2"/>';
+  }
+
+  function mug(x, y, w, h, liquid){
+    return '<path d="M'+x+' '+y+' h'+w+' v'+r(h-6)+' a6 6 0 0 1 -6 6 h'+r(-(w-12))+' a6 6 0 0 1 -6 -6 Z" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="2.1" stroke-linejoin="round"/>'
+         + '<path d="M'+r(x+w)+' '+r(y+3)+' q5.5 '+r(h*0.38)+' 0 '+r(h*0.55)+'" fill="none" stroke="'+INK+'" stroke-width="2.1"/>'
+         + '<path d="M'+r(x+1.6)+' '+r(y+3)+' h'+r(w-3.2)+'" stroke="'+(liquid||BROWN)+'" stroke-width="2.9" stroke-linecap="round"/>';
+  }
+
+  function sparkle(x, y, s, fill){
+    return '<path d="M'+x+' '+r(y-6*s)+' q'+r(1.3*s)+' '+r(4.7*s)+' '+r(6*s)+' '+r(6*s)
+         + ' q'+r(-4.7*s)+' '+r(1.3*s)+' '+r(-6*s)+' '+r(6*s)
+         + ' q'+r(-1.3*s)+' '+r(-4.7*s)+' '+r(-6*s)+' '+r(-6*s)
+         + ' q'+r(4.7*s)+' '+r(-1.3*s)+' '+r(6*s)+' '+r(-6*s)+' Z" fill="'+(fill||YEL)+'"/>';
+  }
+
+  var items = [
+    {
+      name: "кот, который просто моргает",
+      text: "ничего не надо делать. просто посмотри на кота.",
+      svg: head(32,33,1.2,"none")
+        + '<g class="blink">' + eyes("dot",32,33,1.2) + '</g>'
+    },
+    {
+      name: "кот в коробке",
+      text: "иногда лучший план — залезть в коробку и не отсвечивать.",
+      svg: head(32,18,.8,"closed",true)
+        + '<path d="M12 30 h40 v17 a5 5 0 0 1 -5 5 H17 a5 5 0 0 1 -5 -5 Z" fill="#e8c79a" stroke="'+INK+'" stroke-width="2.2" stroke-linejoin="round"/>'
+        + '<path d="M12 30 L19 23.5 h26 l7 6.5" fill="#f2dab6" stroke="'+INK+'" stroke-width="2.2" stroke-linejoin="round"/>'
+        + paw(24,31.5,3.9) + paw(40,31.5,3.9)
+        + '<path d="M24 40 h16" stroke="'+INK+'" stroke-width="2" stroke-linecap="round" opacity=".3"/>'
+        + '<path d="M20 45 q4 3.5 8 0" fill="none" stroke="'+INK+'" stroke-width="1.8" stroke-linecap="round" opacity=".25"/>'
+    },
+    {
+      name: "спящий кот-булочка",
+      text: "он спит 16 часов в сутки и ни разу не извинился.",
+      svg: ear(32,30,1,-1) + ear(32,30,1,1)
+        + '<path d="M10 49 c0 -15 9.5 -23 22 -23 s22 8 22 23 Z" fill="'+FUR+'" stroke="'+INK+'" stroke-width="2" stroke-linejoin="round"/>'
+        + '<path d="M8 49 h48" stroke="'+INK+'" stroke-width="2.2" stroke-linecap="round"/>'
+        + blush(32,37,1) + eyes("closed",32,38,1) + snout(32,37,1)
+        + '<g fill="none" stroke="'+INK+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".65">'
+        + '<path d="M44 19 h7 l-7 7 h7"/><path d="M53 8 h5 l-5 5 h5"/></g>'
+    },
+    {
+      name: "кот в галстуке на созвоне",
+      text: "он тоже не понял, что там обсуждали. и ничего.",
+      svg: '<rect x="4" y="8" width="56" height="39" rx="7" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="2.2"/>'
+        + '<rect x="26" y="47" width="12" height="4" rx="2" fill="'+INK+'" opacity=".7"/>'
+        + '<path d="M20 54 h24" stroke="'+INK+'" stroke-width="2.4" stroke-linecap="round"/>'
+        + head(32,24,.78,"flat",true)
+        + '<path d="M32 34.5 l-3 3 3 2.6 3 -2.6 Z" fill="#8fb7e8" stroke="'+INK+'" stroke-width="1.6" stroke-linejoin="round"/>'
+        + '<path d="M32 40.1 l-2.7 5.4 h5.4 Z" fill="#8fb7e8" stroke="'+INK+'" stroke-width="1.6" stroke-linejoin="round"/>'
+        + '<circle cx="11" cy="14" r="2.3" fill="#ef7d7d"/>'
+        + '<g stroke="'+INK+'" stroke-width="1.8" stroke-linecap="round" opacity=".25"><path d="M48 41 h7"/></g>'
+    },
+    {
+      name: "кот-бариста с чашкой",
+      text: "перерыв не надо заслуживать.",
+      svg: belly(24,36,11,10)
+        + '<path d="M19 40 h10 l1.2 12 a2 2 0 0 1 -2 2 H19.8 a2 2 0 0 1 -2 -2 Z" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="1.9" stroke-linejoin="round"/>'
+        + '<path d="M21 47 h6" stroke="'+INK+'" stroke-width="1.5" stroke-linecap="round" opacity=".35"/>'
+        + '<path d="M20 40 q4 -4 8 0" fill="none" stroke="'+INK+'" stroke-width="1.8" stroke-linecap="round"/>'
+        + head(24,20,.82,"dot",true)
+        + mug(40,35,14,17)
+        + paw(38,47,4.4)
+        + '<g fill="none" stroke="'+INK+'" stroke-width="1.9" stroke-linecap="round" opacity=".4">'
+        + '<path d="M44 31 q3.5 -3.5 0 -7"/><path d="M51 31 q3.5 -3.5 0 -7"/></g>'
+    },
+    {
+      name: "кот смотрит в окно",
+      text: "посмотри в окно 30 секунд. правда, прямо сейчас.",
+      svg: '<rect x="7" y="4" width="50" height="38" rx="5" fill="#cfe9f7" stroke="'+INK+'" stroke-width="2.2"/>'
+        + '<circle cx="47" cy="13" r="5" fill="'+YEL+'" opacity=".85"/>'
+        + '<path d="M9 34 q10 -13 20 -5 t15 -4 v15 H9 Z" fill="#a9dcb4"/>'
+        + '<g stroke="'+INK+'" stroke-width="2" opacity=".6"><path d="M32 5 v36M8 23 h48"/></g>'
+        + '<rect x="3" y="42" width="58" height="6" rx="3" fill="#f2dab6" stroke="'+INK+'" stroke-width="2.1"/>'
+        + '<path d="M35 42 q11 1 11 -9" fill="none" stroke="'+INK+'" stroke-width="6" stroke-linecap="round"/>'
+        + '<path d="M35 42 q11 1 11 -9" fill="none" stroke="'+LIL+'" stroke-width="3" stroke-linecap="round"/>'
+        + '<path d="M19 25 L17 14 L27 20 Z" fill="'+LIL+'" stroke="'+INK+'" stroke-width="2" stroke-linejoin="round"/>'
+        + '<path d="M35 25 L37 14 L27 20 Z" fill="'+LIL+'" stroke="'+INK+'" stroke-width="2" stroke-linejoin="round"/>'
+        + '<path d="M27 42 c-7 0 -11 -5 -11 -12 0 -8 5 -13 11 -13 s11 5 11 13 c0 7 -4 12 -11 12 Z" fill="'+LIL+'" stroke="'+INK+'" stroke-width="2.1"/>'
+    },
+    {
+      name: "кот с мятым листком",
+      text: "сделано неидеально лучше, чем не сделано.",
+      svg: belly(22,36,11,10)
+        + head(22,20,.82,"dot")
+        + '<path d="M38 28 l10 -4 8 7 -3 10 -11 2 -5 -8 Z" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="2.1" stroke-linejoin="round"/>'
+        + '<g stroke="'+INK+'" stroke-width="1.5" opacity=".4"><path d="M42 28 l5 7M52 29 l-5 10M39 36 l9 -2"/></g>'
+        + paw(36,44,4.6)
+    },
+    {
+      name: "резиновая уточка",
+      text: "отойди от ноута на 10 минут.",
+      svg: '<path d="M11 49 q-2 -15 13 -17 q0 -13 12 -13 q11 0 12 11 q12 2 12 8 q0 11 -15 11 Z" fill="'+YEL+'" stroke="'+INK+'" stroke-width="2.2" stroke-linejoin="round"/>'
+        + '<path d="M48 32 q10 -1 10 4 q-7 3 -10 -4 Z" fill="#f39c4b" stroke="'+INK+'" stroke-width="2" stroke-linejoin="round"/>'
+        + '<circle cx="42" cy="27" r="2.7" fill="'+INK+'"/>'
+        + '<circle cx="41.1" cy="25.8" r="1" fill="'+WHITE+'"/>'
+        + '<ellipse cx="34" cy="32" rx="4" ry="2.4" fill="'+PINK+'" opacity=".7"/>'
+        + '<path d="M22 41 q7 6 15 1" fill="none" stroke="#e0a921" stroke-width="2.2" stroke-linecap="round"/>'
+        + '<path d="M8 54 q13 4 27 0 q12 -4 21 0" fill="none" stroke="#9ad4ef" stroke-width="2.8" stroke-linecap="round"/>'
+    },
+    {
+      name: "кот смотрит на пустой график",
+      text: "отрицательный результат — тоже результат.",
+      svg: '<rect x="2" y="7" width="37" height="32" rx="4" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="2.2"/>'
+        + '<path d="M8 12 v21 h26" fill="none" stroke="'+INK+'" stroke-width="2.1" stroke-linecap="round"/>'
+        + '<path d="M9 30 h25" fill="none" stroke="'+PINK+'" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="4 4"/>'
+        + '<g fill="'+LIL+'"><circle cx="15" cy="28.5" r="1.8"/><circle cx="23" cy="30" r="1.8"/><circle cx="31" cy="28.5" r="1.8"/></g>'
+        + '<path d="M2 51 h60" stroke="'+INK+'" stroke-width="2.4" stroke-linecap="round"/>'
+        + head(49,31,.8,"flat")
+    },
+    {
+      name: "кот с огромной стопкой статей",
+      text: "ты не обязан дочитать всё. никто не дочитал.",
+      svg: '<path d="M2 53 h60" stroke="'+INK+'" stroke-width="2.4" stroke-linecap="round"/>'
+        + belly(15,42,8,7)
+        + head(15,26,.72,"wide")
+        + '<g fill="'+WHITE+'" stroke="'+INK+'" stroke-width="2">'
+        + '<rect x="30" y="45" width="30" height="8" rx="2.5"/>'
+        + '<g transform="rotate(-3 45 40)"><rect x="30" y="36" width="30" height="8" rx="2.5"/></g>'
+        + '<g transform="rotate(2.5 45 31)"><rect x="31" y="27" width="28" height="8" rx="2.5"/></g>'
+        + '<g transform="rotate(-2.5 45 22)"><rect x="30" y="18" width="29" height="8" rx="2.5"/></g>'
+        + '<g transform="rotate(3 45 13)"><rect x="32" y="9" width="26" height="8" rx="2.5"/></g></g>'
+        + '<g stroke="'+INK+'" stroke-width="1.5" stroke-linecap="round" opacity=".3">'
+        + '<path d="M34 49 h13M34 40 h13M35 31 h12M34 22 h13"/></g>'
+    },
+    {
+      name: "кот зачёркивает дату в календаре",
+      text: "один срок. а дней ещё много.",
+      svg: '<g stroke="'+INK+'" stroke-width="2.2" stroke-linecap="round"><path d="M14 17 v-6M33 17 v-6"/></g>'
+        + '<rect x="4" y="16" width="39" height="37" rx="5" fill="'+WHITE+'" stroke="'+INK+'" stroke-width="2.2"/>'
+        + '<path d="M6.5 16 h34 a2.5 2.5 0 0 1 2.5 2.5 V26 H4 v-7.5 A2.5 2.5 0 0 1 6.5 16 Z" fill="'+PINK+'"/>'
+        + '<path d="M4 26 h39" stroke="'+INK+'" stroke-width="2.2"/>'
+        + '<g fill="'+LIL+'">'
+        + '<circle cx="12" cy="33" r="2.3"/><circle cx="21" cy="33" r="2.3"/><circle cx="30" cy="33" r="2.3"/><circle cx="38" cy="33" r="2.3"/>'
+        + '<circle cx="12" cy="42" r="2.3"/><circle cx="21" cy="42" r="2.3"/><circle cx="30" cy="42" r="2.3"/>'
+        + '<circle cx="12" cy="49" r="2.3"/><circle cx="21" cy="49" r="2.3"/></g>'
+        + '<circle cx="38" cy="42" r="4" fill="'+YEL+'"/>'
+        + '<g stroke="#ef7d7d" stroke-width="2.8" stroke-linecap="round"><path d="M34.5 38.5 l7 7M41.5 38.5 l-7 7"/></g>'
+        + head(54,28,.62,"dot",true)
+        + paw(51,44,4.4)
+        + '<path d="M49 46 l-8 -6" stroke="#ef7d7d" stroke-width="3.2" stroke-linecap="round"/>'
+    },
+    {
+      name: "кот прячется под ноутбуком",
+      text: "не вышло сегодня — попробуешь на свежую голову.",
+      svg: ear(32,33,1.2,-1) + ear(32,33,1.2,1)
+        + '<ellipse cx="32" cy="43" rx="14.5" ry="12" fill="'+FUR+'" stroke="'+INK+'" stroke-width="2"/>'
+        + '<rect x="3" y="20" width="58" height="14" rx="6" fill="'+LIL+'" stroke="'+INK+'" stroke-width="2.2"/>'
+        + '<path d="M7 29.5 h50" stroke="'+INK+'" stroke-width="1.8" opacity=".28"/>'
+        + '<circle cx="32" cy="25" r="2.2" fill="'+INK+'" opacity=".25"/>'
+        + blush(32,43,1) + eyes("wide",32,43,1) + snout(32,43,1)
+        + paw(15,55,5.2) + paw(49,55,5.2)
+    },
+    {
+      name: "кот с одной морковкой",
+      text: "одна задача за раз. выбери одну.",
+      svg: belly(32,36,11,10)
+        + head(32,19,.82,"dot")
+        + '<path d="M27.5 35 h9 l-3.2 17 q-1.3 2.2 -2.6 0 Z" fill="#f0913f" stroke="'+INK+'" stroke-width="2.1" stroke-linejoin="round"/>'
+        + '<g stroke="'+INK+'" stroke-width="1.3" opacity=".35"><path d="M29 41 h6.2M29.8 46 h4.6"/></g>'
+        + '<g stroke="#6fb173" stroke-width="2.6" stroke-linecap="round" fill="none">'
+        + '<path d="M30 35 q-4 -6 -9 -7"/><path d="M34 35 q2 -7 8 -9"/><path d="M32 34 q-1 -6 -2 -8"/></g>'
+        + paw(23,43,4.6) + paw(41,43,4.6)
+    },
+    {
+      name: "кот в слишком большой шапочке выпускника",
+      text: "дойдёшь. просто не сегодня.",
+      svg: ear(32,38,1,-1) + ear(32,38,1,1)
+        + '<ellipse cx="32" cy="41" rx="14.5" ry="12.5" fill="'+FUR+'" stroke="'+INK+'" stroke-width="2"/>'
+        + blush(32,41,1) + snout(32,41,1) + whisk(32,41,1)
+        + '<path d="M20 33 v5 q12 6 24 0 v-5 Z" fill="#6f58a6" stroke="'+INK+'" stroke-width="2.1" stroke-linejoin="round"/>'
+        + '<path d="M32 10 L61 23 L32 36 L3 23 Z" fill="#6f58a6" stroke="'+DARK+'" stroke-width="2.2" stroke-linejoin="round"/>'
+        + '<path d="M32 14 L52 23 L32 32 L12 23 Z" fill="none" stroke="'+WHITE+'" stroke-width="1.5" opacity=".22"/>'
+        + '<path d="M61 23 q3.5 8 0 13" fill="none" stroke="'+YEL+'" stroke-width="2.6" stroke-linecap="round"/>'
+        + '<circle cx="60" cy="39" r="3.8" fill="'+YEL+'" stroke="'+INK+'" stroke-width="2"/>'
+    },
+    {
+      name: "кот с двумя билетиками",
+      text: "скоро сходим куда-нибудь вдвоём. это уже близко.",
+      svg: belly(21,36,11,10)
+        + head(21,19,.82,"dot")
+        + '<g transform="rotate(-13 46 37)"><rect x="37" y="30" width="21" height="14" rx="3.5" fill="'+YEL+'" stroke="'+INK+'" stroke-width="2.1"/><path d="M48 30 v14" stroke="'+INK+'" stroke-width="1.5" stroke-dasharray="2.4 2.4"/>' + sparkle(42,37,.5,WHITE) + '</g>'
+        + '<g transform="rotate(9 44 45)"><rect x="34" y="38" width="21" height="14" rx="3.5" fill="'+PINK+'" stroke="'+INK+'" stroke-width="2.1"/><path d="M45 38 v14" stroke="'+INK+'" stroke-width="1.5" stroke-dasharray="2.4 2.4"/>' + sparkle(39,45,.5,WHITE) + '</g>'
+        + paw(32,45,4.4)
+        + sparkle(11,12,.8,YEL)
+
+    }
+  ];
+
+  /* ---------- мешок без повторов ---------- */
+  var bag = [], last = -1;
+  function pick(){
+    if (!bag.length){
+      for (var i = 0; i < items.length; i++) bag.push(i);
+      for (var j = bag.length - 1; j > 0; j--){
+        var k = Math.floor(Math.random() * (j + 1));
+        var t = bag[j]; bag[j] = bag[k]; bag[k] = t;
+      }
+      if (bag[bag.length - 1] === last && bag.length > 1){
+        var u = bag[bag.length - 1]; bag[bag.length - 1] = bag[0]; bag[0] = u;
+      }
+    }
+    last = bag.pop();
+    return items[last];
+  }
+
+  var CAPS = [
+    ["#f6a8c8", "#e98fb6"], ["#f9d05c", "#ecb93e"], ["#9fd8b4", "#7cc399"],
+    ["#9ad4ef", "#74bfe0"], ["#c9b6e8", "#ac97d6"], ["#ffb3a7", "#f3937f"]
+  ];
+
+  var CAPS = [
+    ["#f6a8c8", "#e98fb6"], ["#f9d05c", "#ecb93e"], ["#9fd8b4", "#7cc399"],
+    ["#9ad4ef", "#74bfe0"], ["#c9b6e8", "#ac97d6"], ["#ffb3a7", "#f3937f"]
+  ];
+
+  function capsuleMarkup(c){
+    return '<svg class="capsule fall" viewBox="0 0 60 62" aria-hidden="true">'
+      + '<defs><clipPath id="capTopClip"><path d="M4 30 a26 26 0 0 1 52 0 Z"/></clipPath></defs>'
+      + '<g class="cap-bot">'
+      +   '<ellipse cx="30" cy="58" rx="18" ry="3.6" fill="#463a61" opacity=".2"/>'
+      +   '<path d="M4 30 a26 26 0 0 0 52 0 Z" fill="#fffdf9" stroke="' + INK + '" stroke-width="3" stroke-linejoin="round"/>'
+      +   '<path d="M13 40 q6 9 17 10.5" fill="none" stroke="#e6dcf4" stroke-width="4" stroke-linecap="round"/>'
+      + '</g>'
+      + '<g class="cap-top">'
+      +   '<path d="M4 30 a26 26 0 0 1 52 0 Z" fill="' + c[0] + '"/>'
+      +   '<g clip-path="url(#capTopClip)"><rect x="0" y="22" width="60" height="9" fill="' + c[1] + '"/></g>'
+      +   '<path d="M4 30 a26 26 0 0 1 52 0 Z" fill="none" stroke="' + INK + '" stroke-width="3" stroke-linejoin="round"/>'
+      +   '<path d="M5.4 22 h49.2" stroke="' + INK + '" stroke-width="2.2" stroke-linecap="round"/>'
+      +   '<path d="M13 19 q6 -9.5 17 -11.5" fill="none" stroke="#ffffff" stroke-width="5" opacity=".55" stroke-linecap="round"/>'
+      +   '<path d="M44.5 13 q4.5 4 5.5 9.5" fill="none" stroke="#ffffff" stroke-width="2.8" opacity=".32" stroke-linecap="round"/>'
+      + '</g>'
+      + '</svg>';
+  }
+
+  var count = 0, vmBusy = false, lastFocus = null;
+
+  function showGift(swap){
+    var it = pick();
+    giftArt.innerHTML = '<svg viewBox="0 0 64 64" aria-hidden="true">' + it.svg + '</svg>';
+    giftText.textContent = it.text;
+    count++;
+    counter.textContent = "котов сегодня: " + count;
+    vmHint.textContent = "крути ещё, когда захочется.";
+
+    if (swap){
+      replay(giftCard, "swap");
+    } else {
+      lastFocus = document.activeElement;
+      gift.hidden = false;
+      document.body.style.overflow = "hidden";
+      giftClose.focus();
+    }
+  }
+
+  function closeGift(){
+    gift.hidden = true;
+    document.body.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  function keepTrayInView(){
+    var box = vmWrap.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    if (box.bottom > vh - 8 || box.top < 8){
+      try { vmWrap.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" }); }
+      catch(e){ vmWrap.scrollIntoView(); }
+    }
+  }
+
+  vmBtn.addEventListener("click", function(){
+    if (vmBusy) return;
+    vmBusy = true;
+    keepTrayInView();
+    replay(vmWrap, "shake");
+
+    var col = CAPS[Math.floor(Math.random() * CAPS.length)];
+    var cap;
+
+    setTimeout(function(){
+      slot.classList.remove("free");
+      slot.innerHTML = capsuleMarkup(col);
+      cap = slot.firstChild;
+      replay(sparks, "pop");
+      vmHint.textContent = "капсула выпала…";
+    }, reduced ? 0 : 240);
+
+    setTimeout(function(){
+      if (cap){ cap.classList.remove("fall"); cap.classList.add("wait"); }
+    }, reduced ? 0 : 1060);
+
+    setTimeout(function(){
+      if (cap){ cap.classList.remove("wait"); cap.classList.add("open"); }
+      slot.classList.add("free");
+      replay(sparks, "pop");
+    }, reduced ? 0 : 1560);
+
+    setTimeout(function(){
+      showGift(false);
+      vmBusy = false;
+    }, reduced ? 0 : 1900);
+
+    setTimeout(function(){
+      if (slot.firstChild === cap){ slot.innerHTML = ""; slot.classList.remove("free"); }
+    }, reduced ? 0 : 2300);
+  });
+
+  giftMore.addEventListener("click", function(){ showGift(true); });
+  giftClose.addEventListener("click", closeGift);
+  gift.addEventListener("click", function(ev){ if (ev.target === gift) closeGift(); });
+  document.addEventListener("keydown", function(ev){
+    if (ev.key === "Escape" && !gift.hidden) closeGift();
+  });
+
+  /* ---------- переключатель частей ---------- */
+  var tabs = [$("tab-p1"), $("tab-p2"), $("tab-p3"), $("tab-p4"), $("tab-p5")];
+  var panels = [$("p1"), $("p2"), $("p3"), $("p4"), $("p5")];
+
+  function selectTab(i, focusPanel){
+    tabs.forEach(function(t, k){
+      t.setAttribute("aria-selected", k === i ? "true" : "false");
+      if (k === i) t.classList.remove("fresh");
+    });
+    panels.forEach(function(pl, k){
+      if (k === i){
+        pl.hidden = false;
+        replay(pl, "in");
+      } else {
+        pl.hidden = true;
+      }
+    });
+    if (focusPanel) panels[i].focus();
+    try { window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" }); }
+    catch(e){ window.scrollTo(0, 0); }
+  }
+
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ selectTab(i); });
+    t.addEventListener("keydown", function(ev){
+      var d = ev.key === "ArrowRight" ? 1 : ev.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      ev.preventDefault();
+      var n = (i + d + tabs.length) % tabs.length;
+      tabs[n].focus();
+      selectTab(n);
+    });
+  });
+
+  /* ---------- лего: сборка ---------- */
+  function brick(x, y, w, h, fill, studs){
+    var out = "", gap = w / studs, i, sx;
+    for (i = 0; i < studs; i++){
+      sx = x + gap * i + gap / 2 - 7.5;
+      out += '<rect x="' + r(sx) + '" y="' + (y - 8) + '" width="15" height="12" rx="5" fill="' + fill + '" stroke="' + INK + '" stroke-width="2.6"/>';
+    }
+    out += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="4" fill="' + fill + '" stroke="' + INK + '" stroke-width="2.6"/>';
+    out += '<path d="M' + (x + 6) + ' ' + (y + h - 6) + ' h' + (w - 12) + '" stroke="#ffffff" stroke-width="3" opacity=".22" stroke-linecap="round"/>';
+    return out;
+  }
+
+  var FACE =
+      '<ellipse cx="72" cy="86" rx="4.4" ry="5.4" fill="' + INK + '"/>'
+    + '<ellipse cx="108" cy="86" rx="4.4" ry="5.4" fill="' + INK + '"/>'
+    + '<circle cx="70.4" cy="83.8" r="1.7" fill="#ffffff"/>'
+    + '<circle cx="106.4" cy="83.8" r="1.7" fill="#ffffff"/>'
+    + '<path d="M87 93 h6 l-3 3.4 Z" fill="' + NOSE + '"/>'
+    + '<path d="M85 99 q5 4.4 10 0" fill="none" stroke="' + INK + '" stroke-width="2.4" stroke-linecap="round"/>'
+    + '<ellipse cx="55" cy="96" rx="6" ry="3.6" fill="' + PINK + '" opacity=".7"/>'
+    + '<ellipse cx="125" cy="96" rx="6" ry="3.6" fill="' + PINK + '" opacity=".7"/>';
+
+  var BRICKS = [
+    brick(42, 162, 96, 22, "#fbe0c0", 4),
+    brick(46, 136, 88, 26, "#c9b6e8", 4),
+    brick(46, 110, 88, 26, "#f6a8c8", 4),
+    brick(38, 70, 104, 40, "#fbe0c0", 5) + FACE,
+    brick(50, 46, 26, 24, "#fbe0c0", 1)
+      + '<rect x="57" y="53" width="12" height="12" rx="3" fill="' + EARIN + '"/>'
+      + brick(104, 46, 26, 24, "#fbe0c0", 1)
+      + '<rect x="111" y="53" width="12" height="12" rx="3" fill="' + EARIN + '"/>',
+    '<g transform="rotate(12 143 140)">' + brick(134, 116, 18, 48, "#c9b6e8", 1) + '</g>',
+    brick(14, 162, 24, 22, "#8fc98a", 1),
+    brick(16, 140, 20, 22, "#8fc98a", 1),
+    brick(9, 116, 33, 24, "#f6a8c8", 2)
+      + '<circle cx="25.5" cy="128" r="7" fill="#f9d05c" stroke="' + INK + '" stroke-width="2.4"/>'
+  ];
+
+  var PIC_THINK = belly(22,38,11,10)
+        + head(22,21,.8,"side")
+        + '<circle cx="35" cy="31" r="2.3" fill="' + WHITE + '" stroke="' + INK + '" stroke-width="2"/>'
+        + '<circle cx="40" cy="26" r="3.3" fill="' + WHITE + '" stroke="' + INK + '" stroke-width="2"/>'
+        + '<rect x="36" y="4" width="26" height="19" rx="9.5" fill="' + WHITE + '" stroke="' + INK + '" stroke-width="2.2"/>'
+        + '<path d="M49 10.6 c-2.2 -2.7 -6 -1 -6 2 c0 2.6 3.4 4.6 6 6.8 c2.6 -2.2 6 -4.2 6 -6.8 c0 -3 -3.8 -4.7 -6 -2 Z" fill="' + PINK + '" stroke="' + INK + '" stroke-width="1.8" stroke-linejoin="round"/>'
+        + paw(33,45,4.4);
+
+  var PIC_PHONE = belly(24,37,11,10)
+        + head(24,20,.8,"dot")
+        + '<rect x="38" y="26" width="21" height="30" rx="5" fill="' + WHITE + '" stroke="' + INK + '" stroke-width="2.2"/>'
+        + '<rect x="41.5" y="30" width="14" height="20" rx="2.5" fill="#cfe9f7"/>'
+        + '<circle cx="48.5" cy="37" r="4" fill="' + YEL + '" stroke="' + INK + '" stroke-width="1.8"/>'
+        + '<g stroke="' + INK + '" stroke-width="1.4" stroke-linecap="round" opacity=".55"><path d="M48.5 30.8 v-1.6M43.6 32.8 l-1.1 -1.1M53.4 32.8 l1.1 -1.1"/></g>'
+        + '<g stroke="' + INK + '" stroke-width="1.6" stroke-linecap="round" opacity=".35"><path d="M44 44.5 h9M44 47.5 h6"/></g>'
+        + '<circle cx="48.5" cy="53" r="1.7" fill="' + INK + '" opacity=".45"/>'
+        + paw(36,42,4.4)
+        + sparkle(60,17,.6,YEL);
+
+  var PIC_BOWL = belly(32,32,11,10)
+        + head(32,15,.8,"closed")
+        + '<path d="M22 42 q10 -8 20 0 Z" fill="#f0913f" stroke="' + INK + '" stroke-width="2" stroke-linejoin="round"/>'
+        + '<path d="M17 44 h30 l-4.5 13 a5 5 0 0 1 -4.6 3 H26.1 a5 5 0 0 1 -4.6 -3 Z" fill="' + WHITE + '" stroke="' + INK + '" stroke-width="2.2" stroke-linejoin="round"/>'
+        + '<path d="M25 50 q7 3 14 0" fill="none" stroke="' + INK + '" stroke-width="1.8" stroke-linecap="round" opacity=".25"/>'
+        + '<rect x="14" y="40" width="36" height="7" rx="3.5" fill="' + WHITE + '" stroke="' + INK + '" stroke-width="2.2"/>'
+        + paw(17,42,3.6) + paw(47,42,3.6)
+        + sparkle(56,20,.6,PINK);
+
+  var STEPS = [
+    { t: "попить воды" },
+    { t: "открыть окно на минуту" },
+    { t: "размять спину" },
+    { t: "не забыть поесть", pic: PIC_BOWL },
+    { t: "сделать одну маленькую вещь" },
+    { t: "закрыть ноут на десять минут" },
+    { t: "написать мне доброе утро", pic: PIC_PHONE },
+    { t: "подумать обо мне", pic: PIC_THINK },
+    { t: "лечь спать вовремя" }
+  ];
+
+  var KNOB =
+      '<svg class="knobs" viewBox="0 0 34 24" aria-hidden="true">'
+    + '<rect class="bk" x="4" y="2" width="10" height="9" rx="4" fill="#fffdf9" stroke="' + INK + '" stroke-width="2.2"/>'
+    + '<rect class="bk" x="20" y="2" width="10" height="9" rx="4" fill="#fffdf9" stroke="' + INK + '" stroke-width="2.2"/>'
+    + '<rect class="bk" x="2" y="8" width="30" height="14" rx="3" fill="#fffdf9" stroke="' + INK + '" stroke-width="2.2"/>'
+    + '</svg>';
+
+  var stepsBox = $("steps"), bricksLayer = $("bricks"),
+      buildSparks = $("buildSparks"), legoDone = $("legoDone"), legoHint = $("legoHint");
+  var done = STEPS.map(function(){ return false; });
+
+  STEPS.forEach(function(st, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "step";
+    b.setAttribute("aria-pressed", "false");
+    b.innerHTML = (st.pic
+      ? '<svg class="pic" viewBox="0 0 64 64" aria-hidden="true">' + st.pic + '</svg>'
+      : KNOB) + '<span class="txt"></span>';
+    b.querySelector(".txt").textContent = st.t;
+    b.addEventListener("click", function(){
+      done[i] = !done[i];
+      b.setAttribute("aria-pressed", done[i] ? "true" : "false");
+      redraw();
+    });
+    stepsBox.appendChild(b);
+  });
+
+  var shown = 0;
+  function redraw(){
+    var n = done.filter(Boolean).length;
+    bricksLayer.innerHTML = BRICKS.slice(0, n).map(function(m, k){
+      return '<g class="' + (k === n - 1 && n > shown ? "brick-in" : "") + '">' + m + '</g>';
+    }).join("");
+    shown = n;
+
+    if (n === BRICKS.length){
+      legoDone.hidden = false;
+      replay(legoDone, "in");
+      legoHint.textContent = "всё. кот собран, день тоже.";
+      buildSparks.setAttribute("opacity", "1");
+    } else {
+      legoDone.hidden = true;
+      legoHint.textContent = n ? ("деталей на месте: " + n + " из " + BRICKS.length) : "отмечай, что получилось. кот собирается сам.";
+      buildSparks.setAttribute("opacity", "0");
+    }
+  }
+  redraw();
+
+  /* ---------- письма ---------- */
+  var LETTERS = [
+    { col: ["#f6a8c8", "#eb8fb6"], text: "если сегодня получилось только встать и дожить — этого достаточно." },
+    { col: ["#9fd8b4", "#7cc399"], text: "твоя работа не обязана быть гениальной. она обязана быть законченной. когда-нибудь." },
+    { col: ["#9ad4ef", "#74bfe0"], text: "ты не отстаёшь. просто у всех свой темп, и твой — нормальный." },
+    { col: ["#f9d05c", "#ecb93e"], text: "плохой день не отменяет того, что ты уже сделал." },
+    { col: ["#c9b6e8", "#ac97d6"], text: "отдых — это часть работы, а не награда за неё." },
+    { col: ["#ffb3a7", "#f3937f"], text: "скоро увидимся. осталось меньше, чем кажется." }
+  ];
+
+  function envelope(c, n){
+    return '<svg viewBox="0 0 100 96" aria-hidden="true">'
+      + '<path class="flap-open" d="M5.5 33 L50 2 L94.5 33 Z" fill="' + c[1] + '" stroke="' + INK + '" stroke-width="3" stroke-linejoin="round"/>'
+      + '<g class="card-in">'
+      +   '<rect x="18" y="6" width="64" height="44" rx="5" fill="#fffdf6" stroke="' + INK + '" stroke-width="3"/>'
+      +   '<g stroke="' + INK + '" stroke-width="2.4" stroke-linecap="round" opacity=".3">'
+      +     '<path d="M26 17 h48M26 25 h48M26 33 h32"/></g>'
+      + '</g>'
+      + '<rect x="4" y="30" width="92" height="58" rx="9" fill="' + c[0] + '" stroke="' + INK + '" stroke-width="3"/>'
+      + '<path d="M8 84 L46 58 M92 84 L54 58" stroke="' + c[1] + '" stroke-width="3" stroke-linecap="round"/>'
+      + '<path class="flap-shut" d="M5.5 33 L50 64 L94.5 33 Z" fill="' + c[1] + '" stroke="' + INK + '" stroke-width="3" stroke-linejoin="round"/>'
+      + '<g class="seal">'
+      +   '<circle cx="50" cy="56" r="11" fill="' + PINK + '" stroke="' + INK + '" stroke-width="2.8"/>'
+      +   '<path d="M50 49 q1.1 4.5 5.6 5.6 q-4.5 1.1 -5.6 5.6 q-1.1 -4.5 -5.6 -5.6 q4.5 -1.1 5.6 -5.6 Z" fill="#fffdf9"/>'
+      + '</g>'
+      + '</svg>';
+  }
+
+  var envGrid = $("envGrid"), note = $("note"), noteText = $("noteText"),
+      lettersCount = $("lettersCount");
+  var opened = [];
+
+  LETTERS.forEach(function(L, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "env";
+    b.setAttribute("aria-pressed", "false");
+    b.setAttribute("aria-label", "письмо " + (i + 1));
+    b.innerHTML = envelope(L.col, i + 1);
+    b.addEventListener("click", function(){
+      var fresh = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", "true");
+      if (fresh){
+        opened.push(i);
+        lettersCount.textContent = "открыто: " + opened.length + " из " + LETTERS.length;
+        replay(b, "just");
+      }
+      noteText.textContent = L.text;
+      note.hidden = false;
+      replay(note, "in");
+      try { note.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "nearest" }); }
+      catch(e){ note.scrollIntoView(); }
+    });
+    envGrid.appendChild(b);
+  });
+
+  /* ---------- купоны ---------- */
+  var ICONS = {
+    tiramisu:
+        '<rect x="7" y="12" width="34" height="8" rx="2" fill="#8a6246"/>'
+      + '<rect x="7" y="20" width="34" height="9" fill="#fff3dc"/>'
+      + '<rect x="7" y="29" width="34" height="6" fill="#dfb98c"/>'
+      + '<rect x="7" y="35" width="34" height="8" fill="#fff3dc"/>'
+      + '<rect x="7" y="12" width="34" height="31" rx="3" fill="none" stroke="' + INK + '" stroke-width="2.4"/>'
+      + '<g fill="#6d4a34" opacity=".65"><circle cx="14" cy="16" r="1.3"/><circle cx="22" cy="15" r="1.1"/><circle cx="30" cy="17" r="1.3"/><circle cx="36" cy="15" r="1"/></g>'
+      + '<ellipse cx="33" cy="9" rx="5" ry="3.4" transform="rotate(-22 33 9)" fill="#7a5138" stroke="' + INK + '" stroke-width="2"/>'
+      + '<path d="M30 10.4 q3 -2.8 6 -2.8" fill="none" stroke="#fff3dc" stroke-width="1.4" stroke-linecap="round"/>',
+    phone:
+        '<rect x="13" y="5" width="22" height="38" rx="5" fill="#fffdf9" stroke="' + INK + '" stroke-width="2.4"/>'
+      + '<rect x="16.5" y="10" width="15" height="24" rx="2.5" fill="#cfe9f7"/>'
+      + '<path d="M24 17.5 c-2.2 -2.7 -6 -1 -6 2 c0 2.6 3.4 4.6 6 6.8 c2.6 -2.2 6 -4.2 6 -6.8 c0 -3 -3.8 -4.7 -6 -2 Z" fill="' + PINK + '" stroke="' + INK + '" stroke-width="1.8" stroke-linejoin="round"/>'
+      + '<circle cx="24" cy="38.5" r="1.8" fill="' + INK + '" opacity=".45"/>',
+    walk:
+        '<path d="M8 34 q0 -9 7 -9 q4 0 6 4 l5 4 q9 2 13 6 v3 a2.5 2.5 0 0 1 -2.5 2.5 H10.5 A2.5 2.5 0 0 1 8 42 Z" fill="' + LIL + '" stroke="' + INK + '" stroke-width="2.4" stroke-linejoin="round"/>'
+      + '<path d="M8 38 h31" stroke="' + INK + '" stroke-width="2" opacity=".45"/>'
+      + '<path d="M15 27 q4 3 6 7" fill="none" stroke="' + INK + '" stroke-width="2" stroke-linecap="round" opacity=".4"/>'
+      + '<g stroke="' + INK + '" stroke-width="2" stroke-linecap="round" opacity=".35"><path d="M6 14 h9M4 21 h7"/></g>'
+      + '<path d="M30 8 q1.1 4.2 5.2 5.2 q-4.2 1.1 -5.2 5.2 q-1.1 -4.2 -5.2 -5.2 q4.2 -1.1 5.2 -5.2 Z" fill="' + YEL + '"/>',
+    bowl:
+        '<path d="M15 26 q9 -7 18 0 Z" fill="#f0913f" stroke="' + INK + '" stroke-width="2" stroke-linejoin="round"/>'
+      + '<path d="M12 30 h24 l-3.6 11 a4 4 0 0 1 -3.7 2.4 H19.3 a4 4 0 0 1 -3.7 -2.4 Z" fill="#fffdf9" stroke="' + INK + '" stroke-width="2.4" stroke-linejoin="round"/>'
+      + '<rect x="9" y="25.5" width="30" height="6" rx="3" fill="#fffdf9" stroke="' + INK + '" stroke-width="2.4"/>'
+      + '<g fill="none" stroke="' + INK + '" stroke-width="2" stroke-linecap="round" opacity=".4">'
+      + '<path d="M18 19 q3.5 -3.5 0 -7"/><path d="M26 19 q3.5 -3.5 0 -7"/><path d="M34 19 q3.5 -3.5 0 -7"/></g>',
+    flask:
+        '<path d="M19 6 h10 v13 l9 19 a4 4 0 0 1 -3.6 5.6 H13.6 A4 4 0 0 1 10 38 Z" fill="#dff0fb" stroke="' + INK + '" stroke-width="2.4" stroke-linejoin="round"/>'
+      + '<path d="M14.6 30 h18.8 l4 8.6 a2.5 2.5 0 0 1 -2.3 3.4 H12.9 a2.5 2.5 0 0 1 -2.3 -3.4 Z" fill="' + GREEN + '"/>'
+      + '<path d="M17 4 h14" stroke="' + INK + '" stroke-width="2.6" stroke-linecap="round"/>'
+      + '<g fill="#fffdf9" opacity=".85"><circle cx="20" cy="35" r="2.4"/><circle cx="27" cy="37.5" r="1.7"/><circle cx="31" cy="33.5" r="1.3"/></g>',
+    magnifier:
+        '<path d="M28 29 L41 42" stroke="' + INK + '" stroke-width="6" stroke-linecap="round"/>'
+      + '<path d="M28 29 L41 42" stroke="#c08a5e" stroke-width="3.2" stroke-linecap="round"/>'
+      + '<circle cx="20" cy="20" r="14" fill="#dff0fb" stroke="' + INK + '" stroke-width="2.8"/>'
+      + '<g fill="' + INK + '" opacity=".65">'
+      + '<ellipse cx="20" cy="23" rx="5.4" ry="4.4"/>'
+      + '<ellipse cx="13.6" cy="16.6" rx="2.3" ry="2.9"/>'
+      + '<ellipse cx="19" cy="14.4" rx="2.3" ry="2.9"/>'
+      + '<ellipse cx="24.6" cy="16.6" rx="2.3" ry="2.9"/></g>'
+      + '<path d="M12 11 q5 -4 10 -1" fill="none" stroke="#ffffff" stroke-width="3" opacity=".7" stroke-linecap="round"/>'
+  };
+
+  var COUPONS = [
+    { hero: true, icon: "tiramisu", t: "тирамису со мной",
+      n: "не в честь чего-то. просто так." },
+    { icon: "magnifier", t: "доиграть тот детектив",
+      n: "тот самый, который мы бросили на середине, когда ты улетел. он ждёт." },
+    { icon: "phone", t: "звонок в любое время",
+      n: "даже в три ночи. особенно в три ночи." },
+    { icon: "walk", t: "прогулка без цели",
+      n: "никуда не идём. просто идём." },
+    { icon: "bowl", t: "я молчу, ты ешь",
+      n: "ни одного вопроса, пока не доешь." },
+    { icon: "flask", t: "расскажешь про эксперимент",
+      n: "а я буду делать вид, что всё понимаю." }
+  ];
+
+  var cpList = $("cpList"), cpCount = $("cpCount"), tornCount = 0;
+
+  COUPONS.forEach(function(c){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "coupon" + (c.hero ? " hero" : "");
+    b.setAttribute("aria-pressed", "false");
+    b.innerHTML =
+        (c.hero ? '<span class="cp-ribbon">главный</span>' : '')
+      + '<span class="cp-stub"><svg viewBox="0 0 48 48" aria-hidden="true">' + ICONS[c.icon] + '</svg></span>'
+      + '<span class="cp-perf"></span>'
+      + '<span class="cp-body"><span class="cp-title"></span><span class="cp-note"></span></span>'
+      + '<span class="cp-stamp">годен<br>всегда</span>';
+    b.querySelector(".cp-title").textContent = c.t;
+    b.querySelector(".cp-note").textContent = c.n;
+    b.addEventListener("click", function(){
+      if (b.getAttribute("aria-pressed") === "true") return;
+      b.setAttribute("aria-pressed", "true");
+      replay(b, "tear");
+      tornCount++;
+      cpCount.textContent = "оторвано: " + tornCount + " из " + COUPONS.length;
+    });
+    cpList.appendChild(b);
+  });
+
+})();
+</script>
+<style>
+/* моргание кота — конечное, только после выдачи */
+.blink{transform-box:fill-box;transform-origin:center}
+.gift-art .blink{animation:blink 1.6s ease-in-out 3 1.1s both}
+@keyframes blink{
+  0%,42%,52%,100%{transform:scaleY(1)}
+  46%,48%{transform:scaleY(.12)}
+}
+@media (prefers-reduced-motion: reduce){
+  .gift-art .blink{animation:none}
+}
+</style>
+</body>
+</html>
